@@ -1,6 +1,6 @@
 import React from "react";
 
-const FormChooser = () => {
+const FormChooser = ({forms, currentForm, setCurrentForm}) => {
 
 
     return (

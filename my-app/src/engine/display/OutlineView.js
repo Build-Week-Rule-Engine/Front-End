@@ -1,6 +1,6 @@
 import React from "react";
 
-const OutlineView = () => {
+const OutlineView = ({form}) => {
 
 
     return (

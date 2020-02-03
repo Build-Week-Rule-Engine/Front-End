@@ -1,6 +1,6 @@
 import React from "react";
 
-const FormRecipients = () => {
+const FormRecipients = ({form}) => {
 
 
     return (

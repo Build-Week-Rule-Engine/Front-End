@@ -1,6 +1,6 @@
 import React from "react";
 
-const FormFields = () => {
+const FormFields = ({form}) => {
 
 
     return (

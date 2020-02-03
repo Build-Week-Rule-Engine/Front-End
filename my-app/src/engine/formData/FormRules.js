@@ -1,6 +1,6 @@
 import React from "react";
 
-const FormRules = () => {
+const FormRules = ({form}) => {
 
 
     return (

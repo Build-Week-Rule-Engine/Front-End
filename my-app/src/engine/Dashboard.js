@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import FormChooser from "./formData/FormChooser";
 import FormFields from "./formData/FormFields";
@@ -9,18 +9,45 @@ import OutlineView from "./display/OutlineView";
 
 const Dashboard = () => {
 
-    
+    const initialForms = {
+        sales: {
+            name: "Sales",
+            recipients: ["Zach", "Tyrone", "Kayla", "Steffie", "Grant"],
+            rules: {
+                number: ["is less than", "is equal to"],
+                text: ["is equal to", "contains"],
+            },
+        },
+        billing: {
+            name: "Billing",
+            recipients: ["Dan", "Chester", "Brendan", "Lillie", "Candace"],
+            rules: {
+                number: ["is greater than or equal to", "is greater than", "is equal to"],
+                text: ["contains"],
+            },
+        },
+        techSupport: {
+            name: "Tech Support",
+            recipients: ["Eunice", "Jordan", "Alyssa", "Katie", "June"],
+            rules: {
+                number: ["is equal to", "is between"],
+                text: ["is equal to"],
+            },
+        },
+    }
+
+    const [currentForm, setCurrentForm] = useState(initialForms.sales);
 
     return (
         <div>
             <div className="sidebar">
-                <FormChooser />
-                <FormFields />
-                <FormRecipients />
-                <FormRules />
+                <FormChooser forms={initialForms} currentForm={currentForm} setCurrentForm={setCurrentForm} />
+                <FormFields form={currentForm} />
+                <FormRecipients form={currentForm} />
+                <FormRules form={currentForm} />
             </div>
             <div className="ruleLayout">
-                <OutlineView />
+                <OutlineView form={currentForm} />
             </div>
 
         </div>
