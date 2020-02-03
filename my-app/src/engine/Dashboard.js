@@ -9,8 +9,8 @@ import OutlineView from "./display/OutlineView";
 
 const Dashboard = () => {
 
-    const initialForms = {
-        sales: {
+    const initialForms = [
+        {
             name: "Sales",
             recipients: ["Zach", "Tyrone", "Kayla", "Steffie", "Grant"],
             rules: {
@@ -18,7 +18,7 @@ const Dashboard = () => {
                 text: ["is equal to", "contains"],
             },
         },
-        billing: {
+        {
             name: "Billing",
             recipients: ["Dan", "Chester", "Brendan", "Lillie", "Candace"],
             rules: {
@@ -26,15 +26,15 @@ const Dashboard = () => {
                 text: ["contains"],
             },
         },
-        techSupport: {
+        {
             name: "Tech Support",
             recipients: ["Eunice", "Jordan", "Alyssa", "Katie", "June"],
             rules: {
                 number: ["is equal to", "is between"],
                 text: ["is equal to"],
             },
-        },
-    }
+        }
+    ]
 
     const [currentForm, setCurrentForm] = useState(initialForms.sales);
 
