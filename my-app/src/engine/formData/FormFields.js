@@ -5,7 +5,10 @@ const FormFields = ({form}) => {
 
     return (
         <div className="formFields">
-            form fields
+            <h2>Fields</h2>
+            {form.fields.map(field =>
+                <div className="formField" key={field}>{field}</div>
+            )}
         </div>
     )
 }
