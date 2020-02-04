@@ -19,6 +19,7 @@ const FormChooser = ({forms, currentForm, setCurrentForm}) => {
             <select name="formsAvailable" onChange={handleChange}>
                 {forms.map(formData => <option key={formData.name} value={formData.name}>{formData.name}</option>)}
             </select>
+            <h2>{currentForm.name}</h2>
         </div>
     )
 }

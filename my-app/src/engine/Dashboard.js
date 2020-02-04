@@ -7,6 +7,8 @@ import FormRules from "./formData/FormRules";
 
 import OutlineView from "./display/OutlineView";
 
+import "./Dashboard.css";
+
 const Dashboard = () => {
 
     const initialForms = [
@@ -45,7 +47,7 @@ const Dashboard = () => {
     const [currentForm, setCurrentForm] = useState(initialForms[0]);
 
     return (
-        <div>
+        <div className="dashboardContainer">
             <div className="sidebar">
                 <FormChooser forms={initialForms} currentForm={currentForm} setCurrentForm={setCurrentForm} />
                 <FormFields form={currentForm} />

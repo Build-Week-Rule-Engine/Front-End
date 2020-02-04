@@ -5,7 +5,7 @@ const OutlineView = ({form}) => {
 
     return (
         <div className="outlineView">
-            outline view
+            <h1>outline view</h1>
         </div>
     )
 }

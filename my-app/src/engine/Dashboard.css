@@ -1,0 +1,22 @@
+* {
+    box-sizing: border-box;
+    border: 1px solid #CCCCCC;
+}
+
+.dashboardContainer {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.sidebar {
+
+    width: 25%;
+    
+}
+
+.ruleLayout {
+
+    width: 75%;
+    
+}
