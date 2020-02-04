@@ -39,7 +39,7 @@
     align-items: center;
 }
 
-.formOptions div {
+.formField, .formRule, .formValue, .formOperator, .formRecipient {
     color: white;
     background-color: #666666;
     border: 2px dashed #999999;
@@ -53,15 +53,71 @@
     min-width: 25%;
 }
 
-.formOptions div:hover {
+.formField:hover, .formRule:hover, .formValue:hover, .formOperator:hover, .formRecipient:hover {
 
     color: #333333;
     background-color: #CCCCCC;
     cursor: move;
 }
 
+.formOperator {
+    background-color: #999999;
+}
+
+.formValue {
+    color: black;
+    background-color: #EEEEEE;
+}
+
+.formRecipient {
+    background-color: #333333;
+}
+
+
+
 .formRules h3 {
 
     margin: 0.5rem;
     text-align: left;
+}
+
+.ruleBox, .dropArea {
+
+    border: 2px solid #CCCCCC;
+
+    min-height: 3rem;
+    padding: 0.5rem;
+    
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    /* padding: 0.5rem 0; */
+    /* margin: 0.25rem 0; */
+    margin-bottom: 0.5rem;
+}
+
+.ruleBox:hover {
+    background-color: #EEEEEE;
+}
+
+.dropArea {
+    border: 2px dashed #666666;
+    color: #666666;
+
+    max-width: 300px;
+}
+
+.choiceYes, .choiceNo {
+    display: flex;
+
+}
+
+.yesNoText {
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    margin: 1rem 0; 
+    display: inline-block;
+    width: 4rem;
 }

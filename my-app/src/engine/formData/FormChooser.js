@@ -9,8 +9,6 @@ const FormChooser = ({forms, currentForm, setCurrentForm}) => {
 
         if (newForm)
             { setCurrentForm(newForm); }
-
-        console.log("changed form to", newForm);
     }
     
     return (

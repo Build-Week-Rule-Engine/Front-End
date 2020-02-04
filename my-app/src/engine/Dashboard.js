@@ -50,8 +50,8 @@ const Dashboard = () => {
         <div className="dashboardContainer">
             <div className="sidebar">
                 <FormChooser forms={initialForms} currentForm={currentForm} setCurrentForm={setCurrentForm} />
-                <FormFields form={currentForm} />
                 <FormRecipients form={currentForm} />
+                <FormFields form={currentForm} />
                 <FormRules form={currentForm} />
             </div>
             <div className="ruleLayout">

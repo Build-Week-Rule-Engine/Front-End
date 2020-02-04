@@ -14,14 +14,14 @@ const FormRules = ({form}) => {
 
             <div className="formOptions">
                 {form.rules.number.map(rule =>
-                    <div className="formRule" key={rule}>{rule}</div>
+                    <div className="formOperator" key={rule}>{rule}</div>
                 )}
             </div>
 
             <h3>Text rules</h3>
             <div className="formOptions">
                 {form.rules.text.map(rule =>
-                    <div className="formRule" key={rule}>{rule}</div>
+                    <div className="formOperator" key={rule}>{rule}</div>
                 )}
             </div>
         </div>
