@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    border: 1px solid #CCCCCC;
+    /* border: 1px solid #CCCCCC; */
 }
 
 .dashboardContainer {
@@ -11,12 +11,57 @@
 
 .sidebar {
 
-    width: 25%;
+    width: 30%;
+
+    padding: 1%;
     
 }
 
 .ruleLayout {
 
-    width: 75%;
+    width: 70%;
     
+}
+
+.sidebar h2 {
+    
+}
+
+
+.formFields, .formRecipients, .formRules {
+    
+}
+
+.formOptions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.formOptions div {
+    color: white;
+    background-color: #666666;
+    border: 2px dashed #999999;
+    border-radius: 2px;
+    
+    line-height: 2rem;
+    padding: 0 0.5rem;
+
+    margin: 0.5rem;
+    
+    min-width: 25%;
+}
+
+.formOptions div:hover {
+
+    color: #333333;
+    background-color: #CCCCCC;
+    cursor: move;
+}
+
+.formRules h3 {
+
+    margin: 0.5rem;
+    text-align: left;
 }

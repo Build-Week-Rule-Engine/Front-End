@@ -5,7 +5,7 @@ const OutlineView = ({form}) => {
 
     return (
         <div className="outlineView">
-            <h1>outline view</h1>
+            <h1>{form.name} Form Routing (outline view)</h1>
         </div>
     )
 }
