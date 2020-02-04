@@ -103,12 +103,32 @@ const OutlineView = ({form}) => {
                         </div>
 
                         <div className="choiceYes">
-                            <p className="yesNoText">Yes</p>
+                            
+                            <div className="yesTextParent">
+                                <div className="yesNoText">
+                                    <div className="verticalLine lineAboveYes"></div>
+                                    Yes
+                                </div>
+                                <div className="lineBelowYesContainer">
+                                    <div className="verticalLine lineBelowYes"></div>
+                                </div>
+                            </div>
+                            <div className="rightArrowContainer">
+                                <div className="horizontalLine"></div>
+                                <div className="rightArrow"></div>
+                            </div>
                             {createRoute(formRoute.yes)}
                         </div>
                     
                         <div className="choiceNo">
-                            <p className="yesNoText">No</p>
+                            <div className="yesNoText">
+                                <div className="verticalLine lineAboveNo"></div>
+                                No
+                            </div>
+                            <div className="rightArrowContainer">
+                                <div className="horizontalLine"></div>
+                                <div className="rightArrow"></div>
+                            </div>
                             {createRoute(formRoute.no)}
                         </div>
                             
