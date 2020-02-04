@@ -4,9 +4,13 @@ const FormChooser = ({forms, currentForm, setCurrentForm}) => {
 
     const handleChange = (event) => {
 
-        setCurrentForm(event.target.value);
+        // find the form associated with the chosen value
+        const newForm = forms.filter(form => form.name === event.target.value)[0];
 
-        console.log(event.target.value);
+        if (newForm)
+            { setCurrentForm(newForm); }
+
+        console.log("changed form to", newForm);
     }
     
     return (
