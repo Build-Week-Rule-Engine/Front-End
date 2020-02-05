@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const OutlineView = ({form}) => {
-
-    // const [formRoute, setFormRoute] = useState({});
-    const [formRoute, setFormRoute] = useState(initialStates[form.name.toLowerCase()]);
-
-    // change formRoute when the form changes
-    useEffect(() => setFormRoute(initialStates[form.name.toLowerCase()]), [form]);
+const OutlineView = ({form, tree}) => {
 
     const isEndNode = (node) => {
         return Array.isArray(node) || typeof node === "string" || !isNaN(node);
@@ -20,22 +14,22 @@ const OutlineView = ({form}) => {
         return <div className="dropArea">(drag a form field here, or drag a recipient here to finish.)</div>
     }
 
-    const createRoute = (formRoute) => {
+    const createRoute = (tree) => {
 
         // string or array found as a node
-        if (isEndNode(formRoute))
-            { return formRoute; }
+        if (isEndNode(tree))
+            { return tree; }
 
         // empty object {} found as a node
-        else if (isUnfinishedNode(formRoute))
+        else if (isUnfinishedNode(tree))
             { return makeEndNode(); }
 
         // node contains a recipient
-        else if (formRoute.recipient !== undefined)
+        else if (tree.recipient !== undefined)
             { return (
                 <div className="ruleBox">
                     <div className="formRecipient">
-                        Send to {formRoute.recipient}
+                        Send to {tree.recipient}
                     </div>
                 </div>
             ) }
@@ -46,9 +40,9 @@ const OutlineView = ({form}) => {
                 return (
                     <div className="ruleAndChoices">
                         <div className="ruleBox">
-                            <div className="formRule">{formRoute.rule.field}</div>
-                            <div className="formOperator">{formRoute.rule.operator}</div>
-                            <div className="formValue">{formRoute.rule.value}</div>
+                            <div className="formRule">{tree.rule.field}</div>
+                            <div className="formOperator">{tree.rule.operator}</div>
+                            <div className="formValue">{tree.rule.value}</div>
                         </div>
 
                         <div className="choiceYes">
@@ -66,7 +60,7 @@ const OutlineView = ({form}) => {
                                 <div className="horizontalLine"></div>
                                 <div className="rightArrow"></div>
                             </div>
-                            {createRoute(formRoute.yes)}
+                            {createRoute(tree.yes)}
                         </div>
                     
                         <div className="choiceNo">
@@ -78,7 +72,7 @@ const OutlineView = ({form}) => {
                                 <div className="horizontalLine"></div>
                                 <div className="rightArrow"></div>
                             </div>
-                            {createRoute(formRoute.no)}
+                            {createRoute(tree.no)}
                         </div>
                             
                     </div>
@@ -89,7 +83,7 @@ const OutlineView = ({form}) => {
     return (
         <div className="outlineView">
             <h1>{form.name} Form Routing (outline view)</h1>
-            {createRoute(formRoute)}
+            {createRoute(tree)}
         </div>
     )
 }

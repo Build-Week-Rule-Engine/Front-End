@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 
 import FormChooser from "./formData/FormChooser";
 import FormFields from "./formData/FormFields";
@@ -7,7 +8,7 @@ import FormRules from "./formData/FormRules";
 
 import OutlineView from "./display/OutlineView";
 
-import { changeForm } from "../../actions";
+import { changeForm } from "../actions";
 
 import "./Dashboard.css";
 
