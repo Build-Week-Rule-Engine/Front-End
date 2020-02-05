@@ -8,22 +8,30 @@ export const initialTrees = [
         treeId: 1,
         tree:
             {
+                pathToNode: [],
                 rule: {field: "quantity", operator: "is between", value: "5, 10"},
                 yes: {
+                    pathToNode: [1],
                     rule: {field: "topic", operator: "is equal to", value: "delivery"},
                     yes: {
+                        pathToNode: [1, 1],
                         rule: {field: "date", operator: "contains", value: "January"},
-                        yes: { recipient: "Jonathan" },
-                        no: { }
+                        yes: {
+                                pathToNode: [1, 1, 0],
+                                recipient: "Jonathan" },
+                        no: { pathToNode: [1, 1, 0] }
                         },
                     no: {
-                        pathToNode: [1, 1, 0],
+                        pathToNode: [1, 0],
                         rule: {field: "supervisor", operator: "is equal to", value: "Bernd"},
-                        yes: { recipient: "Bernd" },
-                        no: { }
+                        yes: {
+                            pathToNode: [1, 0],
+                            recipient: "Bernd"
+                        },
+                        no: { pathToNode: [1, 1, 0] }
                         }
                     },
-                no: {}
+                no: { pathToNode: [1, 1, 0] }
             }
     },
 
@@ -35,18 +43,27 @@ export const initialTrees = [
         treeId: 2,
         tree:
             {
+                pathToNode: [],
                 rule: {field: "price", operator: "is less than", value: "100"},
                 yes: {
-                rule: {field: "agent", operator: "equal to", value: "Jason"},
-                yes: { },
+                    pathToNode: [1],
+                    rule: {field: "agent", operator: "equal to", value: "Jason"},
+                    yes: { pathToNode: [1, 1], },
+                    no: {
+                        pathToNode: [1, 0],
+                        rule: {field: "state", operator: "contains", value: "Oklahoma"},
+                        yes: { pathToNode: [1, 0, 1] },
+                        no: {
+                            pathToNode: [1, 0, 0],
+                            recipient: "Alvin"
+                            }
+                        }
+                    },
                 no: {
-                    rule: {field: "state", operator: "contains", value: "Oklahoma"},
-                    yes: { },
-                    no: { recipient: "Alvin" }
+                        pathToNode: [0],
+                        recipient: "Tommy"
                     }
-                },
-            no: { recipient: "Tommy" }
-            }
+                }
     },
 
     {
@@ -57,15 +74,24 @@ export const initialTrees = [
         treeId: 3,
         tree:
             {
+                pathToNode: [],
                 rule: {field: "employeeId", operator: "is equal to", value: "E92374Q1"},
-                yes: { },
+                yes: { pathToNode: [1] },
                 no: {
+                    pathToNode: [0],
                     rule: {field: "ticketNumber", operator: "is less than", value: "600"},
-                    yes: { },
+                    yes: { pathToNode: [0, 1],},
                     no: {
+                        pathToNode: [0, 0],
                         rule: {field: "date", operator: "contains", value: "2018"},
-                        yes: { recipient: "Alyssa" },
-                        no: { recipient: "Katie" }
+                        yes: {
+                            pathToNode: [0, 0, 1],
+                            recipient: "Alyssa"
+                        },
+                        no: {
+                            pathToNode: [0, 0, 0],
+                            recipient: "Katie"
+                            }
                         }
                     }
             }

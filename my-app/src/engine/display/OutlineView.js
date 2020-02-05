@@ -7,7 +7,7 @@ const OutlineView = ({form, treeData}) => {
     }
 
     const isUnfinishedNode = (node) => {
-        return Object.entries(node).length === 0;
+        return Object.entries(node).length === 1; // only one property is present, the pathToNode array
     }
 
     const makeEndNode = () => {
