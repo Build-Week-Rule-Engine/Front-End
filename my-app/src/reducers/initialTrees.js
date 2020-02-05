@@ -1,96 +1,93 @@
 export const initialTrees = [
 
     {
-        formName: "sales",
         formId: 1,
         
-        treeName: "sales tree #1",
-        treeId: 1,
-        tree:
+        name: "sales tree #1",
+        id: 1,
+        data:
             {
-                pathToNode: [],
-                rule: {field: "quantity", operator: "is between", value: "5, 10"},
-                yes: {
-                    pathToNode: [1],
-                    rule: {field: "topic", operator: "is equal to", value: "delivery"},
-                    yes: {
-                        pathToNode: [1, 1],
-                        rule: {field: "date", operator: "contains", value: "January"},
-                        yes: {
-                                pathToNode: [1, 1, 0],
-                                recipient: "Jonathan" },
-                        no: { pathToNode: [1, 1, 0] }
+                path: "",
+                rule: {key: "quantity", op: "is between", val: "5, 10"},
+                1: {
+                path: "1",
+                    rule: {key: "topic", op: "is equal to", val: "delivery"},
+                    1: {
+                    path: "11",
+                        rule: {key: "date", op: "contains", val: "January"},
+                        1: {
+                                path: "110",
+                                to: "Jonathan" },
+                        0: { path: "110" }
                         },
-                    no: {
-                        pathToNode: [1, 0],
-                        rule: {field: "supervisor", operator: "is equal to", value: "Bernd"},
-                        yes: {
-                            pathToNode: [1, 0],
-                            recipient: "Bernd"
+                    0: {
+                        path: "10",
+                        rule: {key: "supervisor", op: "is equal to", val: "Bernd"},
+                        1: {
+                        path: "101",
+                            to: "Bernd"
                         },
-                        no: { pathToNode: [1, 1, 0] }
+                        0: { path: "100" }
                         }
                     },
-                no: { pathToNode: [1, 1, 0] }
+                0: { path: "10" }
             }
     },
 
     {
-        formName: "billing",
         formId: 2,
         
-        treeName: "billing tree #1",
-        treeId: 2,
-        tree:
+        name: "billing tree #1",
+        id: 2,
+        data:
             {
-                pathToNode: [],
-                rule: {field: "price", operator: "is less than", value: "100"},
-                yes: {
-                    pathToNode: [1],
-                    rule: {field: "agent", operator: "equal to", value: "Jason"},
-                    yes: { pathToNode: [1, 1], },
-                    no: {
-                        pathToNode: [1, 0],
-                        rule: {field: "state", operator: "contains", value: "Oklahoma"},
-                        yes: { pathToNode: [1, 0, 1] },
-                        no: {
-                            pathToNode: [1, 0, 0],
-                            recipient: "Alvin"
+                path: "",
+                rule: {key: "price", op: "is less than", val: "100"},
+                1: {
+                    path: "1",
+                    rule: {key: "agent", op: "equal to", val: "Jason"},
+                    1: { path: "11", },
+                    0: {
+                        path: "10",
+                        rule: {key: "state", op: "contains", val: "Oklahoma"},
+                        1: { path: "101" },
+                        0: {
+                            path: "100",
+                            to: "Alvin"
                             }
                         }
                     },
-                no: {
-                        pathToNode: [0],
-                        recipient: "Tommy"
+                0: {
+                        path: "0",
+                        to: "Tommy"
                     }
                 }
     },
 
     {
-        formName: "tech support",
         formId: 3,
         
-        treeName: "tech support tree #1",
-        treeId: 3,
-        tree:
+        name: "tech support tree #1",
+        id: 3,
+        data:
             {
-                pathToNode: [],
-                rule: {field: "employeeId", operator: "is equal to", value: "E92374Q1"},
-                yes: { pathToNode: [1] },
-                no: {
-                    pathToNode: [0],
-                    rule: {field: "ticketNumber", operator: "is less than", value: "600"},
-                    yes: { pathToNode: [0, 1],},
-                    no: {
-                        pathToNode: [0, 0],
-                        rule: {field: "date", operator: "contains", value: "2018"},
-                        yes: {
-                            pathToNode: [0, 0, 1],
-                            recipient: "Alyssa"
+                path: "",
+                rule: {key: "employeeId", op: "is equal to", val: "E92374Q1"},
+                1: { path: "0" },
+                0: {
+                    path: "0",
+                    rule: {key: "ticketNumber", op: "is less than", val: "600"},
+                    1: { path: "01" },
+                    0: {
+                        path: "00",
+                        rule: {key: "date", op: "contains", val: "2018"},
+                        1: {
+                            path: "001",
+                            to: "Alyssa"
                         },
-                        no: {
-                            pathToNode: [0, 0, 0],
-                            recipient: "Katie"
+                        0: {
+                            path: "000",
+                            to: "Katie"
                             }
                         }
                     }
