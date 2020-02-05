@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const OutlineView = ({form, tree}) => {
+const OutlineView = ({form, treeData}) => {
 
     const isEndNode = (node) => {
         return Array.isArray(node) || typeof node === "string" || !isNaN(node);
@@ -82,8 +82,8 @@ const OutlineView = ({form, tree}) => {
 
     return (
         <div className="outlineView">
-            <h1>{form.name} Form Routing (outline view)</h1>
-            {createRoute(tree)}
+            <h1>Route: {treeData.treeName} ({treeData.formName} form)</h1>
+            {createRoute(treeData.tree)}
         </div>
     )
 }

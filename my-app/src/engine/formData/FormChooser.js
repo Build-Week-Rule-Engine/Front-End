@@ -18,9 +18,6 @@ const FormChooser = ({formsAvailable, form, changeForm}) => {
             }
     }
     
-console.log(currentForm, "is the current form");
-console.log(formsAvailable, "are available");
-
     return (
         <div className="formChooser">
             <h2>{currentForm.name} Form</h2>

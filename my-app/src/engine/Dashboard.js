@@ -23,7 +23,7 @@ const Dashboard = ({form, tree, formsAvailable, treesAvailable, changeForm}) => 
                 <FormRules form={form} />
             </div>
             <div className="ruleLayout">
-                {/* <OutlineView form={form} tree={tree} /> */}
+                <OutlineView form={form} treeData={tree} />
             </div>
 
         </div>
