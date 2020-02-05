@@ -180,7 +180,7 @@ export const reducer = (state = initialState, action) => {
 
     case CHANGE_FORM:
 
-        return 
+        return {...state, form: action.payload};
 
     default:
 

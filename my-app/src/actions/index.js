@@ -63,5 +63,8 @@ export const addUser = (userData) => dispatch => {
 }
 
 export const changeForm = (form) => dispatch => {
+
+    console.log("in action creator", form)
+
     dispatch({ type: CHANGE_FORM, payload: form});
 }

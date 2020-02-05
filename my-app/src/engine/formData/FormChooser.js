@@ -13,6 +13,8 @@ const FormChooser = ({formsAvailable, form, changeForm}) => {
             {
                 setCurrentForm(newForm);
 
+                console.log(newForm);
+
                 // update current form via dispatcher
                 changeForm(newForm);
             }
