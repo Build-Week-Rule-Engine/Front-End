@@ -41,6 +41,9 @@ export const DELETING_TREE_SUCCESS = "DELETING_TREE_SUCCESS";
 export const DELETING_TREE_FAILURE = "DELETING_TREE_FAILURE";
 
 export const CHANGE_FORM = "CHANGE_FORM";
+export const UPDATE_LAST_SELECTED_OPTION = "UPDATE_LAST_SELECTED_OPTION";
+export const DELETE_TREE_NODE = "DELETE_TREE_NODE";
+
 // export const SET_CURRENT_TREE = "SET_CURRENT_TREE";
 
 export const addUser = (userData) => dispatch => {

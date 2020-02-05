@@ -171,3 +171,51 @@
     
     height: 100%;
 }
+
+.deleteButtons {
+    
+    /* put in top right corner of parent container */
+    margin-top: -0.25rem;
+    margin-bottom: -0.25rem;
+    margin-right: -0.25rem;
+
+    height: 3.5rem;
+    
+    margin-left: auto;
+    align-self: flex-start;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.clearContentsButton {
+    margin-top: -0.5rem;
+}
+
+.deleteNodeButton {
+    margin-bottom: -1rem;
+}
+
+
+.clearContentsButton, .deleteNodeButton {
+    color: #CCCCCC;
+
+    cursor: pointer;
+    
+    font-weight: bold;
+}
+
+.deleteNodeButton {
+    font-size: 1.5rem;
+}
+
+.clearContentsButton:hover {
+    color: #993333;
+}
+
+.deleteNodeButton:hover {
+    color: #993333;
+}
