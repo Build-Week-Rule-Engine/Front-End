@@ -197,13 +197,19 @@ export const reducer = (state = initialState, action) => {
 
     case DELETE_TREE_NODE_AND_CHILDREN:
 
+        console.log("Reducer: deleting node and children at", action.payload)
+
         return {...state };
 
     case CLEAR_RULE_AT_NODE:
 
+        console.log("Reducer: clearing rule at", action.payload)
+
         return {...state };
     
     case UPDATE_RULE_AT_NODE:
+
+        console.log("Reducer: updating rule at", action.payload)
 
         return {...state };
     

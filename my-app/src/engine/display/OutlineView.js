@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import DeleteButtons from "./DeleteButtons";
 
-const OutlineView = ({form, treeData, lastSelectedOption}) => {
+const OutlineView = ({form, treeData, lastSelectedOption, deleteTreeNodeAndChildren, clearRuleAtNode, updateRuleAtNode }) => {
 
     const isEndNode = (node) => {
         return Array.isArray(node) || typeof node === "string" || !isNaN(node);
@@ -32,10 +33,11 @@ const OutlineView = ({form, treeData, lastSelectedOption}) => {
                     <div className="formRecipient">
                         Send to {tree.to}
                     </div>
-                    <div className="deleteButtons">
-                        <div className="clearContentsButton" title="Clear rule contents">&#9003;</div>
-                        <div className="deleteNodeButton" title="Delete this rule and all choices stemming from this rule">🗑</div>
-                    </div>
+                    <DeleteButtons path={tree.path}
+                        deleteTreeNodeAndChildren={deleteTreeNodeAndChildren}
+                        clearRuleAtNode={clearRuleAtNode}
+                        updateRuleAtNode={updateRuleAtNode}
+                    />
                 </div>
             ) }
 
@@ -48,10 +50,11 @@ const OutlineView = ({form, treeData, lastSelectedOption}) => {
                             <div className="formRule">{tree.rule.key}</div>
                             <div className="formOperator">{tree.rule.op}</div>
                             <div className="formValue">{tree.rule.val}</div>
-                            <div className="deleteButtons">
-                                <div className="clearContentsButton" title="Clear rule contents">&#9003;</div>
-                                <div className="deleteNodeButton" title="Delete this rule and all choices stemming from this rule">🗑</div>
-                            </div>
+                            <DeleteButtons path={tree.path}
+                                deleteTreeNodeAndChildren={deleteTreeNodeAndChildren}
+                                clearRuleAtNode={clearRuleAtNode}
+                                updateRuleAtNode={updateRuleAtNode}
+                            />
                         </div>
 
                         <div className="choiceYes">
