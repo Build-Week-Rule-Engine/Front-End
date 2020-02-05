@@ -43,7 +43,10 @@ import {
     SET_CURRENT_TREE,
 
     UPDATE_LAST_SELECTED_OPTION,
-    DELETE_TREE_NODE
+    
+    DELETE_TREE_NODE_AND_CHILDREN,
+    CLEAR_RULE_AT_NODE,
+    UPDATE_RULE_AT_NODE,
 
 } from "../actions";
 
@@ -192,10 +195,18 @@ export const reducer = (state = initialState, action) => {
 
         return {...state, lastSelectedOption: action.payload};
 
-    case DELETE_TREE_NODE:
+    case DELETE_TREE_NODE_AND_CHILDREN:
 
         return {...state };
 
+    case CLEAR_RULE_AT_NODE:
+
+        return {...state };
+    
+    case UPDATE_RULE_AT_NODE:
+
+        return {...state };
+    
     default:
 
         return state;

@@ -41,8 +41,12 @@ export const DELETING_TREE_SUCCESS = "DELETING_TREE_SUCCESS";
 export const DELETING_TREE_FAILURE = "DELETING_TREE_FAILURE";
 
 export const CHANGE_FORM = "CHANGE_FORM";
+
 export const UPDATE_LAST_SELECTED_OPTION = "UPDATE_LAST_SELECTED_OPTION";
-export const DELETE_TREE_NODE = "DELETE_TREE_NODE";
+
+export const DELETE_TREE_NODE_AND_CHILDREN = "DELETE_TREE_NODE_AND_CHILDREN";
+export const UPDATE_RULE_AT_NODE = "UPDATE_RULE_AT_NODE";
+export const CLEAR_RULE_AT_NODE = "CLEAR_RULE_AT_NODE";
 
 // export const SET_CURRENT_TREE = "SET_CURRENT_TREE";
 
@@ -78,4 +82,25 @@ export const changeForm = (form) => dispatch => {
     console.log("Action creator: changing form...", form)
 
     dispatch({ type: CHANGE_FORM, payload: form});
+}
+
+export const deleteTreeNodeAndChildren = (path) => dispatch => {
+
+    console.log("Action creator: deleting node and its children...", path)
+
+    dispatch({ type: DELETE_TREE_NODE_AND_CHILDREN, payload: path});
+}
+
+export const clearRuleAtNode = (path) => dispatch => {
+
+    console.log("Action creator: clearing rule at...", path)
+
+    dispatch({ type: CLEAR_RULE_AT_NODE, payload: path});
+}
+
+export const updateRuleAtNode = (path) => dispatch => {
+
+    console.log("Action creator: updating rule at...", path)
+
+    dispatch({ type: UPDATE_RULE_AT_NODE, payload: path});
 }
