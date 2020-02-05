@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useHistory } from "react"
 import { withFormik, Form, Field } from "formik"
 import * as Yup from "yup"
 import axios from "axios"
@@ -12,15 +12,6 @@ const SignUpForm = ({ values, errors, touched, status }) => {
   useEffect(() => {
     status && setSuccess(true)
   }, [status])
-
-  // const submitForm = e => {
-  //   e.preventDefault();
-  //   axios
-  //     .get ()
-  //     .post (
-  //       //Edit this for a correct push
-  //     )
-  // }
 
   return (
     <>
@@ -134,12 +125,22 @@ const FormikSignUpForm = withFormik({
   }),
 
   handleSubmit(values, { setStatus, resetForm }) {
+
+    let valuesToInput = {
+      email: values.email,
+      username: values.username,
+      password: values.password
+    }
+
+    console.log("signing up with", valuesToInput)
+
     axios
-      .post("https://reqres.in/api/users/", values)
+      .post("https://build-4--rule-engine.herokuapp.com/api/auth/sign-up", valuesToInput)
       .then(res => {
         console.log(res)
-        setStatus(res.data)
-        resetForm()
+
+        useHistory().push("/dashboard");
+
       })
       .catch(err => console.log(err))
   }

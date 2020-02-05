@@ -1,6 +1,6 @@
 //replace ed1t with variables as desired
 
-import React from "react"
+import React, { useHistory } from "react"
 import { withFormik, Form, Field } from "formik"
 import * as Yup from "yup"
 import axios from "axios"
@@ -52,12 +52,18 @@ const FormikLogInForm = withFormik({
   }),
 
   handleSubmit(values, { setStatus, resetForm }) {
+
+    console.log(values, "to be submitted");
+
     axios
-      .post("https://reqres.in/api/users/", values)
+      .post("https://build-4--rule-engine.herokuapp.com/api/auth/sign-in", values)
       .then(res => {
         console.log(res)
         setStatus(res.data)
         resetForm()
+
+        useHistory().push("/dashboard");
+
       })
       .catch(err => console.log(err))
   }

@@ -29,7 +29,7 @@ const OutlineView = ({form, treeData}) => {
         else if (tree.to !== undefined)
             { return (
                 <div className="ruleBox">
-                    <div className="formRecipient">
+                    <div className="formRecipient">1
                         Send to {tree.to}
                     </div>
                     <div className="deleteButtons">
