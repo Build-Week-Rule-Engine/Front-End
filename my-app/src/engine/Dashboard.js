@@ -17,13 +17,13 @@ const Dashboard = ({form, tree, formsAvailable, treesAvailable, changeForm}) => 
     return (
         <div className="dashboardContainer">
             <div className="sidebar">
-                <FormChooser formsAvailable={formsAvailable} currentForm={form} changeForm={changeForm} />
+                <FormChooser formsAvailable={formsAvailable} form={form} changeForm={changeForm} />
                 <FormRecipients form={form} />
                 <FormFields form={form} />
                 <FormRules form={form} />
             </div>
             <div className="ruleLayout">
-                <OutlineView form={form} tree={tree} />
+                {/* <OutlineView form={form} tree={tree} /> */}
             </div>
 
         </div>
@@ -45,6 +45,6 @@ const mapStateToProps = (state) => {
         
         errorMessage: state.errorMessage,
     }
-
 }
+
 export default connect(mapStateToProps, {changeForm})(Dashboard);

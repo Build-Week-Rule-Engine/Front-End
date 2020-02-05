@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
-const FormChooser = ({formsAvailable, currentForm, setCurrentForm, changeForm}) => {
+const FormChooser = ({formsAvailable, form, changeForm}) => {
+
+    const [currentForm, setCurrentForm] = useState(form);
 
     const handleChange = (event) => {
 
         // find the form associated with the chosen value
-        const newForm = formsAvailable.filter(form => form.name === event.target.value)[0];
+        const newForm = formsAvailable.filter(form => form.formName === event.target.value)[0];
 
         if (newForm)
             {
@@ -16,11 +18,14 @@ const FormChooser = ({formsAvailable, currentForm, setCurrentForm, changeForm}) 
             }
     }
     
+console.log(currentForm, "is the current form");
+console.log(formsAvailable, "are available");
+
     return (
         <div className="formChooser">
             <h2>{currentForm.name} Form</h2>
             <select name="formsAvailable" onChange={handleChange}>
-                {formsAvailable.map(formData => <option key={formData.name} value={formData.name}>{formData.name}</option>)}
+                {formsAvailable.map(formData => <option key={formData.formName} value={formData.formName}>{formData.formName}</option>)}
             </select>
         </div>
     )
