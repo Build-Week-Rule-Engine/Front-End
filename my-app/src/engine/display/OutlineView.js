@@ -7,7 +7,8 @@ const OutlineView = ({form, treeData}) => {
     }
 
     const isUnfinishedNode = (node) => {
-        return Object.entries(node).length === 1; // only one property is present, the pathToNode array
+
+        return Object.entries(node).length === 1; // only one property is present, the "path" string
     }
 
     const makeEndNode = () => {
@@ -25,11 +26,11 @@ const OutlineView = ({form, treeData}) => {
             { return makeEndNode(); }
 
         // node contains a recipient
-        else if (tree.recipient !== undefined)
+        else if (tree.to !== undefined)
             { return (
                 <div className="ruleBox">
                     <div className="formRecipient">
-                        Send to {tree.recipient}
+                        Send to {tree.to}
                     </div>
                 </div>
             ) }
@@ -40,9 +41,9 @@ const OutlineView = ({form, treeData}) => {
                 return (
                     <div className="ruleAndChoices">
                         <div className="ruleBox">
-                            <div className="formRule">{tree.rule.field}</div>
-                            <div className="formOperator">{tree.rule.operator}</div>
-                            <div className="formValue">{tree.rule.value}</div>
+                            <div className="formRule">{tree.rule.key}</div>
+                            <div className="formOperator">{tree.rule.op}</div>
+                            <div className="formValue">{tree.rule.val}</div>
                         </div>
 
                         <div className="choiceYes">
@@ -60,7 +61,7 @@ const OutlineView = ({form, treeData}) => {
                                 <div className="horizontalLine"></div>
                                 <div className="rightArrow"></div>
                             </div>
-                            {createRoute(tree.yes)}
+                            {createRoute(tree[1])}
                         </div>
                     
                         <div className="choiceNo">
@@ -72,7 +73,7 @@ const OutlineView = ({form, treeData}) => {
                                 <div className="horizontalLine"></div>
                                 <div className="rightArrow"></div>
                             </div>
-                            {createRoute(tree.no)}
+                            {createRoute(tree[0])}
                         </div>
                             
                     </div>
@@ -82,8 +83,8 @@ const OutlineView = ({form, treeData}) => {
 
     return (
         <div className="outlineView">
-            <h1>Route: {treeData.treeName} ({treeData.formName} form)</h1>
-            {createRoute(treeData.tree)}
+            <h1>Route: {treeData.name} (Form ID: {treeData.formId})</h1>
+            {createRoute(treeData.data)}
         </div>
     )
 }
