@@ -1,11 +1,6 @@
 import React from "react";
 
-const FormRules = ({form}) => {
-
-    // if (!form)
-    //     { return }
-
-    // console.log(form.rules);
+const FormRules = ({form, updateLastSelectedOption}) => {
 
     return (
         <div className="formRules">
@@ -14,14 +9,18 @@ const FormRules = ({form}) => {
 
             <div className="formOptions">
                 {form.rules.number.map(rule =>
-                    <div className="formOperator" key={rule}>{rule}</div>
+                    <div className="formOperator" key={"number_rule_" + rule} value={"number_rule_" + rule}
+                        onClick={event => updateLastSelectedOption({type: "number-rule", value: event.target.textContent})}>
+                        {rule}</div>
                 )}
             </div>
 
             <h3>Text rules</h3>
             <div className="formOptions">
                 {form.rules.text.map(rule =>
-                    <div className="formOperator" key={rule}>{rule}</div>
+                    <div className="formOperator" key={"text_rule_" + rule} value={"text_rule_" + rule}
+                    onClick={event => updateLastSelectedOption({type: "text-rule", value: event.target.textContent})}>
+                    {rule}</div>
                 )}
             </div>
         </div>

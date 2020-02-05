@@ -20,8 +20,8 @@ const Dashboard = ({form, tree, formsAvailable, treesAvailable, changeForm, upda
             <div className="sidebar">
                 <FormChooser formsAvailable={formsAvailable} form={form} changeForm={changeForm} />
                 <FormRecipients form={form} updateLastSelectedOption={updateLastSelectedOption} />
-                <FormFields form={form} />
-                <FormRules form={form} />
+                <FormFields form={form} updateLastSelectedOption={updateLastSelectedOption}/>
+                <FormRules form={form} updateLastSelectedOption={updateLastSelectedOption}/>
             </div>
             <div className="ruleLayout">
                 <OutlineView form={form} treeData={tree} lastSelectedOption={lastSelectedOption} />
