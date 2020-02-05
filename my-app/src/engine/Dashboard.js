@@ -7,25 +7,43 @@ import FormRules from "./formData/FormRules";
 
 import OutlineView from "./display/OutlineView";
 
+import { changeForm } from "../../actions";
+
 import "./Dashboard.css";
 
-const Dashboard = () => {
+const Dashboard = ({form, tree, formsAvailable, treesAvailable, changeForm}) => {
 
     return (
         <div className="dashboardContainer">
             <div className="sidebar">
-                <FormChooser forms={initialForms} currentForm={currentForm} setCurrentForm={setCurrentForm} />
-                <FormRecipients form={currentForm} />
-                <FormFields form={currentForm} />
-                <FormRules form={currentForm} />
+                <FormChooser formsAvailable={formsAvailable} currentForm={form} changeForm={changeForm} />
+                <FormRecipients form={form} />
+                <FormFields form={form} />
+                <FormRules form={form} />
             </div>
             <div className="ruleLayout">
-                <OutlineView form={currentForm} />
+                <OutlineView form={form} tree={tree} />
             </div>
 
         </div>
     )
 }
 
-export default Dashboard;
+const mapStateToProps = (state) => {
 
+    return {
+        formsAvailable: state.formsAvailable,
+        formId: state.formId,
+        form: state.form,
+
+        treesAvailable: state.treesAvailable,
+        treeId: state.treeId,
+        tree: state.tree,
+
+        lastSelectedOption: state.lastSelectedOption,
+        
+        errorMessage: state.errorMessage,
+    }
+
+}
+export default connect(mapStateToProps, {changeForm})(Dashboard);

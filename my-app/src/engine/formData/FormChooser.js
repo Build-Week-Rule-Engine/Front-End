@@ -1,21 +1,26 @@
 import React from "react";
 
-const FormChooser = ({forms, currentForm, setCurrentForm}) => {
+const FormChooser = ({formsAvailable, currentForm, setCurrentForm, changeForm}) => {
 
     const handleChange = (event) => {
 
         // find the form associated with the chosen value
-        const newForm = forms.filter(form => form.name === event.target.value)[0];
+        const newForm = formsAvailable.filter(form => form.name === event.target.value)[0];
 
         if (newForm)
-            { setCurrentForm(newForm); }
+            {
+                setCurrentForm(newForm);
+
+                // update current form via dispatcher
+                changeForm(newForm);
+            }
     }
     
     return (
         <div className="formChooser">
             <h2>{currentForm.name} Form</h2>
             <select name="formsAvailable" onChange={handleChange}>
-                {forms.map(formData => <option key={formData.name} value={formData.name}>{formData.name}</option>)}
+                {formsAvailable.map(formData => <option key={formData.name} value={formData.name}>{formData.name}</option>)}
             </select>
         </div>
     )

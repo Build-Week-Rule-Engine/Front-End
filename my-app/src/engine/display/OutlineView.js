@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { changeForm } from "../../actions";
 
 const OutlineView = ({form}) => {
 
@@ -96,17 +95,4 @@ const OutlineView = ({form}) => {
 }
 
 
-const mapStateToProps = (state) => {
-
-    return {
-        formId: state.formId,
-        formName: state.formName,
-        treeId: state.treeId,
-        treeName: state.treeName,
-        tree: state.tree,
-        errorMessage: state.errorMessage,
-    }
-
-}
-
-export default connect(mapStateToProps, {changeForm})(OutlineView);
+export default OutlineView;

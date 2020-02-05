@@ -63,5 +63,5 @@ export const addUser = (userData) => dispatch => {
 }
 
 export const changeForm = (form) => dispatch => {
-    dispatch({ type: ADDING_USER_START, payload: form});
+    dispatch({ type: CHANGE_FORM, payload: form});
 }
