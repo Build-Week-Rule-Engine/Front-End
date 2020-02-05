@@ -1,19 +1,11 @@
 //replace ed1t with variables as desired
 
-
 import React from "react"
+import { withFormik, Form, Field } from "formik"
+import * as Yup from "yup"
+import axios from "axios"
 
-const LogIn = (props) => {
-
-  let ed1t = ""
-
-  // const submitForm = e => {
-  //   e.preventDefault();
-  //   axios
-  //     .push (
-  //       //Edit this for a correct push
-  //     )
-  // }
+const LogInForm = (props) => {
 
   return (
     <>
@@ -21,32 +13,54 @@ const LogIn = (props) => {
         <h1>LogIn</h1>
       </div>
 
-
-      <form onSubmit={ed1t}>
+      <Form >
         <div>
           <label htmlFor="username">Username</label>
-          <input
+          <Field
             id="username"
             type="text"
             name="username"
-            value={ed1t}
           />
         </div>
         <div>
           <label htmlFor="password">Password</label>
-          <input
+          <Field
             id="password"
             type="password"
             name="password"
-            value={ed1t}
           />
         </div>
-        <button onClick={ed1t}>
+        <button type="submit">
           Log In
-      </button>
-      </form>
+        </button>
+      </Form>
     </>
   )
 }
 
-export default LogIn
+const FormikLogInForm = withFormik({
+  mapPropsToValues(props) {
+    return {
+      username: props.username || "",
+      password: props.password || "",
+    }
+  },
+
+  validationSchema: Yup.object().shape({
+    username: Yup.string().required(),
+    password: Yup.string().required(),
+  }),
+
+  handleSubmit(values, { setStatus, resetForm }) {
+    axios
+      .post("https://reqres.in/api/users/", values)
+      .then(res => {
+        console.log(res)
+        setStatus(res.data)
+        resetForm()
+      })
+      .catch(err => console.log(err))
+  }
+})(LogInForm)
+
+export default FormikLogInForm 
