@@ -41,6 +41,10 @@ import {
 
     CHANGE_FORM,
     SET_CURRENT_TREE,
+
+    UPDATE_LAST_SELECTED_OPTION,
+    DELETE_TREE_NODE
+
 } from "../actions";
 
 import initialState from "./initialState";
@@ -181,6 +185,14 @@ export const reducer = (state = initialState, action) => {
     case CHANGE_FORM:
 
         return {...state, form: action.payload};
+
+    case UPDATE_LAST_SELECTED_OPTION:
+
+        return {...state, lastSelectedOption: action.payload};
+
+    case DELETE_TREE_NODE:
+
+        return {...state };
 
     default:
 

@@ -32,6 +32,10 @@ const OutlineView = ({form, treeData}) => {
                     <div className="formRecipient">
                         Send to {tree.to}
                     </div>
+                    <div className="deleteButtons">
+                        <div className="clearContentsButton" title="Clear rule contents">&#9003;</div>
+                        <div className="deleteNodeButton" title="Delete this rule and all choices stemming from this rule">🗑</div>
+                    </div>
                 </div>
             ) }
 
@@ -44,6 +48,10 @@ const OutlineView = ({form, treeData}) => {
                             <div className="formRule">{tree.rule.key}</div>
                             <div className="formOperator">{tree.rule.op}</div>
                             <div className="formValue">{tree.rule.val}</div>
+                            <div className="deleteButtons">
+                                <div className="clearContentsButton" title="Clear rule contents">&#9003;</div>
+                                <div className="deleteNodeButton" title="Delete this rule and all choices stemming from this rule">🗑</div>
+                            </div>
                         </div>
 
                         <div className="choiceYes">
