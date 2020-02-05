@@ -15,6 +15,7 @@ const OutlineView = ({form}) => {
                 no: { }
                 },
             no: {
+                pathToNode: [1, 1, 0],
                 rule: {field: "supervisor", operator: "is equal to", value: "Bernd"},
                 yes: { recipient: "Bernd" },
                 no: { }
