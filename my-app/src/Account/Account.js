@@ -7,17 +7,17 @@ const Account = (props) => {
   return (
     <>
       <div>
-        <Link to={"/Account/LogIn"}>
+        <Link to={"/LogIn"}>
           <button>Log In</button>
         </Link>
-        <Link to={"/Account/SignUp"}>
+        <Link to={"/SignUp"}>
           <button>Sign Up</button>
         </Link>
       </div>
-      <Route path={"/Account/LogIn"}>
+      <Route path={"/LogIn"}>
         <LogIn />
       </Route>
-      <Route path={"/Account/SignUp"}>
+      <Route path={"/SignUp"}>
         <SignUp />
       </Route>
     </>
