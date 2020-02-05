@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 
 import FormChooser from "./formData/FormChooser";
 import FormFields from "./formData/FormFields";
@@ -7,59 +8,43 @@ import FormRules from "./formData/FormRules";
 
 import OutlineView from "./display/OutlineView";
 
+import { changeForm } from "../actions";
+
 import "./Dashboard.css";
 
-const Dashboard = () => {
-
-    const initialForms = [
-        {
-            name: "Sales",
-            id: 0,
-            recipients: ["Zach", "Tyrone", "Kayla", "Steffie", "Grant"],
-            fields: ["product", "price", "agent", "date", "state"],
-            rules: {
-                number: ["is less than", "is equal to"],
-                text: ["is equal to", "contains"],
-            },
-        },
-        {
-            name: "Billing",
-            id: 1,
-            recipients: ["Dan", "Chester", "Brendan", "Lillie", "Candace"],
-            fields: ["accountNumber", "agent", "service", "date", "ticketNumber"],
-            rules: {
-                number: ["is greater than or equal to", "is greater than", "is equal to"],
-                text: ["contains"],
-            },
-        },
-        {
-            name: "Tech Support",
-            id: 2,
-            recipients: ["Eunice", "Jordan", "Alyssa", "Katie", "June"],
-            fields: ["employeeId", "supervisor", "category", "date", "ticketNumber"],
-            rules: {
-                number: ["is equal to", "is between"],
-                text: ["is equal to"],
-            },
-        }
-    ]
-
-    const [currentForm, setCurrentForm] = useState(initialForms[0]);
+const Dashboard = ({form, tree, formsAvailable, treesAvailable, changeForm}) => {
 
     return (
         <div className="dashboardContainer">
             <div className="sidebar">
-                <FormChooser forms={initialForms} currentForm={currentForm} setCurrentForm={setCurrentForm} />
-                <FormRecipients form={currentForm} />
-                <FormFields form={currentForm} />
-                <FormRules form={currentForm} />
+                <FormChooser formsAvailable={formsAvailable} form={form} changeForm={changeForm} />
+                <FormRecipients form={form} />
+                <FormFields form={form} />
+                <FormRules form={form} />
             </div>
             <div className="ruleLayout">
-                <OutlineView form={currentForm} />
+                <OutlineView form={form} treeData={tree} />
             </div>
 
         </div>
     )
 }
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+
+    return {
+        formsAvailable: state.formsAvailable,
+        formId: state.formId,
+        form: state.form,
+
+        treesAvailable: state.treesAvailable,
+        treeId: state.treeId,
+        tree: state.tree,
+
+        lastSelectedOption: state.lastSelectedOption,
+        
+        errorMessage: state.errorMessage,
+    }
+}
+
+export default connect(mapStateToProps, {changeForm})(Dashboard);
