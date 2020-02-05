@@ -38,19 +38,17 @@ import {
     DELETING_TREE_START,
     DELETING_TREE_SUCCESS,
     DELETING_TREE_FAILURE,
+
+    CHANGE_FORM,
+    SET_CURRENT_TREE,
 } from "../actions";
 
-const initialState = {
-
-};
-
-const testState = {
-
-}
+import initialState from "./initialState";
 
 export const reducer = (state = initialState, action) => {
     
     switch (action.type) {
+
     case FETCHING_USER_START:
 
         return;
@@ -179,6 +177,10 @@ export const reducer = (state = initialState, action) => {
     case DELETING_TREE_FAILURE:
 
         return;
+
+    case CHANGE_FORM:
+
+        return 
 
     default:
 

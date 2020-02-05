@@ -40,6 +40,9 @@ export const DELETING_TREE_START = "DELETING_TREE_START";
 export const DELETING_TREE_SUCCESS = "DELETING_TREE_SUCCESS";
 export const DELETING_TREE_FAILURE = "DELETING_TREE_FAILURE";
 
+export const CHANGE_FORM = "CHANGE_FORM";
+// export const SET_CURRENT_TREE = "SET_CURRENT_TREE";
+
 export const addUser = (userData) => dispatch => {
 
     dispatch({ type: ADDING_USER_START});
@@ -57,4 +60,8 @@ export const addUser = (userData) => dispatch => {
 
             dispatch({ type: ADDING_USER_FAILURE, payload: error});
         })
+}
+
+export const changeForm = (form) => dispatch => {
+    dispatch({ type: ADDING_USER_START, payload: form});
 }
