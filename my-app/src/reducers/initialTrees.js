@@ -3,7 +3,7 @@ export const initialTrees = [
     {
         formId: 1,
         
-        name: "sales tree #1",
+        name: "January sales",
         id: 1,
         data:
             {
@@ -37,7 +37,7 @@ export const initialTrees = [
     {
         formId: 2,
         
-        name: "billing tree #1",
+        name: "New customer billing",
         id: 2,
         data:
             {
@@ -67,7 +67,7 @@ export const initialTrees = [
     {
         formId: 3,
         
-        name: "tech support tree #1",
+        name: "Employee software issues",
         id: 3,
         data:
             {
