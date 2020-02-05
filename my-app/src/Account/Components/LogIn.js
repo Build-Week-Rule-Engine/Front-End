@@ -56,7 +56,7 @@ const FormikLogInForm = withFormik({
     console.log(values, "to be submitted");
 
     axios
-      .post("https://build-4--rule-engine.herokuapp.com/api/auth/sign-in", values)
+      .post("https://build-4--rule-engine.herokuapp.com/auth/sign-in", values)
       .then(res => {
         console.log(res)
         setStatus(res.data)
@@ -67,6 +67,7 @@ const FormikLogInForm = withFormik({
       })
       .catch(err => console.log(err))
   }
+
 })(LogInForm)
 
 export default FormikLogInForm 

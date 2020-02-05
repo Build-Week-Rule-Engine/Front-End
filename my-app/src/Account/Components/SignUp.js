@@ -135,9 +135,12 @@ const FormikSignUpForm = withFormik({
     console.log("signing up with", valuesToInput)
 
     axios
-      .post("https://build-4--rule-engine.herokuapp.com/api/auth/sign-up", valuesToInput)
+      .post("https://build-4--rule-engine.herokuapp.com/auth/sign-up", valuesToInput)
       .then(res => {
         console.log(res)
+
+        // store token in localStorage
+        localStorage.setItem("token", res.data.token);
 
         useHistory().push("/dashboard");
 
