@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const OutlineView = ({form, treeData}) => {
+const OutlineView = ({form, treeData, lastSelectedOption}) => {
 
     const isEndNode = (node) => {
         return Array.isArray(node) || typeof node === "string" || !isNaN(node);
@@ -29,7 +29,7 @@ const OutlineView = ({form, treeData}) => {
         else if (tree.to !== undefined)
             { return (
                 <div className="ruleBox">
-                    <div className="formRecipient">1
+                    <div className="formRecipient">
                         Send to {tree.to}
                     </div>
                     <div className="deleteButtons">
@@ -92,6 +92,7 @@ const OutlineView = ({form, treeData}) => {
     return (
         <div className="outlineView">
             <h1>Route: {treeData.name} (Form ID: {treeData.formId})</h1>
+            <h2>Last clicked on: {lastSelectedOption.type} - {lastSelectedOption.value}</h2>
             {createRoute(treeData.data)}
         </div>
     )

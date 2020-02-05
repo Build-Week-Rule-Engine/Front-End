@@ -188,6 +188,8 @@ export const reducer = (state = initialState, action) => {
 
     case UPDATE_LAST_SELECTED_OPTION:
 
+        console.log("Reducer: user last clicked on", action.payload)
+
         return {...state, lastSelectedOption: action.payload};
 
     case DELETE_TREE_NODE:

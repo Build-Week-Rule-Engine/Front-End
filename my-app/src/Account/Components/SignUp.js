@@ -144,6 +144,7 @@ const FormikSignUpForm = withFormik({
       })
       .catch(err => console.log(err))
   }
+  
 })(SignUpForm)
 
 export default FormikSignUpForm 

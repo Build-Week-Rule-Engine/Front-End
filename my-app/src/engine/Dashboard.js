@@ -8,22 +8,23 @@ import FormRules from "./formData/FormRules";
 
 import OutlineView from "./display/OutlineView";
 
-import { changeForm } from "../actions";
+import { changeForm, updateLastSelectedOption } from "../actions";
+// import { setAsCurrentField } from "./formData/sidebarFunctions";
 
 import "./Dashboard.css";
 
-const Dashboard = ({form, tree, formsAvailable, treesAvailable, changeForm}) => {
+const Dashboard = ({form, tree, formsAvailable, treesAvailable, changeForm, updateLastSelectedOption, lastSelectedOption}) => {
 
     return (
         <div className="dashboardContainer">
             <div className="sidebar">
                 <FormChooser formsAvailable={formsAvailable} form={form} changeForm={changeForm} />
-                <FormRecipients form={form} />
+                <FormRecipients form={form} updateLastSelectedOption={updateLastSelectedOption} />
                 <FormFields form={form} />
                 <FormRules form={form} />
             </div>
             <div className="ruleLayout">
-                <OutlineView form={form} treeData={tree} />
+                <OutlineView form={form} treeData={tree} lastSelectedOption={lastSelectedOption} />
             </div>
 
         </div>
@@ -47,4 +48,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {changeForm})(Dashboard);
+export default connect(mapStateToProps, {changeForm, updateLastSelectedOption })(Dashboard);

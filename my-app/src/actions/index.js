@@ -65,9 +65,17 @@ export const addUser = (userData) => dispatch => {
         })
 }
 
+export const updateLastSelectedOption = (option) => dispatch => {
+
+    console.log("Action creator: just clicked on ", option)
+
+    dispatch({ type: UPDATE_LAST_SELECTED_OPTION, payload: option});
+}
+
+
 export const changeForm = (form) => dispatch => {
 
-    console.log("in action creator", form)
+    console.log("Action creator: changing form...", form)
 
     dispatch({ type: CHANGE_FORM, payload: form});
 }
