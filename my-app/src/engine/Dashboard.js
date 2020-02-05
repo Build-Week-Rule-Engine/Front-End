@@ -8,12 +8,12 @@ import FormRules from "./formData/FormRules";
 
 import OutlineView from "./display/OutlineView";
 
-import { changeForm, updateLastSelectedOption } from "../actions";
+import { changeForm, updateLastSelectedOption, deleteTreeNodeAndChildren, clearRuleAtNode, updateRuleAtNode } from "../actions";
 // import { setAsCurrentField } from "./formData/sidebarFunctions";
 
 import "./Dashboard.css";
 
-const Dashboard = ({form, tree, formsAvailable, treesAvailable, changeForm, updateLastSelectedOption, lastSelectedOption}) => {
+const Dashboard = ({form, tree, formsAvailable, treesAvailable, changeForm, updateLastSelectedOption, lastSelectedOption, deleteTreeNodeAndChildren, clearRuleAtNode, updateRuleAtNode }) => {
 
     return (
         <div className="dashboardContainer">
@@ -24,7 +24,11 @@ const Dashboard = ({form, tree, formsAvailable, treesAvailable, changeForm, upda
                 <FormRules form={form} updateLastSelectedOption={updateLastSelectedOption}/>
             </div>
             <div className="ruleLayout">
-                <OutlineView form={form} treeData={tree} lastSelectedOption={lastSelectedOption} />
+                <OutlineView form={form} treeData={tree}
+                lastSelectedOption={lastSelectedOption}
+                deleteTreeNodeAndChildren={deleteTreeNodeAndChildren}
+                clearRuleAtNode={clearRuleAtNode}
+                updateRuleAtNode={updateRuleAtNode} />
             </div>
 
         </div>
@@ -48,4 +52,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {changeForm, updateLastSelectedOption })(Dashboard);
+export default connect(mapStateToProps, {changeForm, updateLastSelectedOption, deleteTreeNodeAndChildren, clearRuleAtNode, updateRuleAtNode })(Dashboard);
