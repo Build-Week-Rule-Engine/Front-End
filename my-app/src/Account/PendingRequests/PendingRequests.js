@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import axios from "axios"
 import styled from "styled-components"
 
+
 const PendingRequests = (props) => {
 
   const [forms, setForms] = useState([])
@@ -27,7 +28,7 @@ const PendingRequests = (props) => {
       .catch(err => {
         let error = ""
         error += err;
-        console.log("error", err)
+        console.log("error", err.status)
         setErrorFound(true)
         setError(error)
         console.log(error, "error in catch")
