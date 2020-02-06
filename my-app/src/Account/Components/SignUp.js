@@ -1,10 +1,12 @@
-import React, { useEffect, useState, useHistory } from "react"
+import React, { useState, useEffect } from "react"
+import { Redirect } from "react-router-dom";
+
 import { withFormik, Form, Field } from "formik"
 import * as Yup from "yup"
 import axios from "axios"
 import styled from "styled-components"
 
-const SignUpForm = ({ values, errors, touched, status }) => {
+const SignUpForm = ({ canRedirect, values, errors, touched, status }) => {
 
   const CenterH1 = styled.h1`
       text-align: center;
@@ -18,6 +20,10 @@ const SignUpForm = ({ values, errors, touched, status }) => {
   useEffect(() => {
     status && setSuccess(true)
   }, [status])
+
+  // redirect to dashboard if login is successful
+  if (canRedirect)
+    { return <Redirect to="/dashboard" />; }
 
   return (
     <>
@@ -111,7 +117,8 @@ const FormikSignUpForm = withFormik({
       password: props.password || "",
       passwordReEnter: props.passwordReEnter || "",
       company: props.company || "",
-      ToS: props.ToS || false
+      ToS: props.ToS || false,
+      setCanRedirect: props.setCanRedirect
     }
   },
 
@@ -125,6 +132,8 @@ const FormikSignUpForm = withFormik({
   }),
 
   handleSubmit(values, { setStatus, resetForm }) {
+
+    let setCanRedirect = values.setCanRedirect;
 
     let valuesToInput = {
       email: values.email,
@@ -141,11 +150,14 @@ const FormikSignUpForm = withFormik({
 
         // store token in localStorage
         localStorage.setItem("token", res.data.token);
-
-        // useHistory().push("/dashboard");
+        
+        setCanRedirect(true);
 
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        console.log("Error signing up:", err);
+        
+        })
   }
 
 })(SignUpForm)
