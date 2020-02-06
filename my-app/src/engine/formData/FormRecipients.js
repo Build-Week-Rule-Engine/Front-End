@@ -1,6 +1,6 @@
 import React from "react";
 
-const FormRecipients = ({form}) => {
+const FormRecipients = ({form, updateLastSelectedOption}) => {
 
 
     return (
@@ -8,7 +8,8 @@ const FormRecipients = ({form}) => {
             <h2>Recipients</h2>
             <div className="formOptions">
                 {form.recipients.map(recipient =>
-                    <div className="formRecipient" key={recipient}>{recipient}</div>
+                    <div className="formRecipient" key={"recipient_" + recipient} value={"recipient_" + recipient}
+                    onClick={event => updateLastSelectedOption({type: "recipient", value: event.target.textContent})}>{recipient}</div>
                 )}
             </div>
         </div>

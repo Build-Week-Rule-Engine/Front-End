@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import DeleteButtons from "./DeleteButtons";
 
-const OutlineView = ({form, treeData}) => {
+const OutlineView = ({form, treeData, lastSelectedOption, deleteTreeNodeAndChildren, clearRuleAtNode, updateRuleAtNode }) => {
 
     const isEndNode = (node) => {
         return Array.isArray(node) || typeof node === "string" || !isNaN(node);
@@ -8,7 +9,12 @@ const OutlineView = ({form, treeData}) => {
 
     const isUnfinishedNode = (node) => {
 
-        return Object.entries(node).length === 1; // only one property is present, the "path" string
+        return !node.rule; // rule property is missing
+    }
+
+    const hasChildren = (node) => {
+
+        return node["0"]; // check if child nodes exist
     }
 
     const makeEndNode = () => {
@@ -21,10 +27,6 @@ const OutlineView = ({form, treeData}) => {
         if (isEndNode(tree))
             { return tree; }
 
-        // empty object {} found as a node
-        else if (isUnfinishedNode(tree))
-            { return makeEndNode(); }
-
         // node contains a recipient
         else if (tree.to !== undefined)
             { return (
@@ -32,27 +34,39 @@ const OutlineView = ({form, treeData}) => {
                     <div className="formRecipient">
                         Send to {tree.to}
                     </div>
-                    <div className="deleteButtons">
-                        <div className="clearContentsButton" title="Clear rule contents">&#9003;</div>
-                        <div className="deleteNodeButton" title="Delete this rule and all choices stemming from this rule">🗑</div>
-                    </div>
+                    <DeleteButtons path={tree.path}
+                        deleteTreeNodeAndChildren={deleteTreeNodeAndChildren}
+                        clearRuleAtNode={clearRuleAtNode}
+                        updateRuleAtNode={updateRuleAtNode}
+                    />
                 </div>
             ) }
+
+        // // empty object {} found as a node
+        else if (!hasChildren(tree))
+            { return makeEndNode(); }
 
         // node contains a rule and yes and no branches
         else
             {
                 return (
                     <div className="ruleAndChoices">
+
+                        {
+                            isUnfinishedNode(tree) ? makeEndNode() :
+                        
                         <div className="ruleBox">
                             <div className="formRule">{tree.rule.key}</div>
                             <div className="formOperator">{tree.rule.op}</div>
                             <div className="formValue">{tree.rule.val}</div>
-                            <div className="deleteButtons">
-                                <div className="clearContentsButton" title="Clear rule contents">&#9003;</div>
-                                <div className="deleteNodeButton" title="Delete this rule and all choices stemming from this rule">🗑</div>
-                            </div>
+                            <DeleteButtons path={tree.path}
+                                deleteTreeNodeAndChildren={deleteTreeNodeAndChildren}
+                                clearRuleAtNode={clearRuleAtNode}
+                                updateRuleAtNode={updateRuleAtNode}
+                            />
                         </div>
+
+                        }
 
                         <div className="choiceYes">
                             
@@ -92,6 +106,7 @@ const OutlineView = ({form, treeData}) => {
     return (
         <div className="outlineView">
             <h1>Route: {treeData.name} (Form ID: {treeData.formId})</h1>
+            <h2>Last clicked on: {lastSelectedOption.type} - {lastSelectedOption.value}</h2>
             {createRoute(treeData.data)}
         </div>
     )

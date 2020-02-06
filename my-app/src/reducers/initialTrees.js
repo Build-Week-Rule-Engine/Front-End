@@ -3,20 +3,20 @@ export const initialTrees = [
     {
         formId: 1,
         
-        name: "sales tree #1",
+        name: "January sales",
         id: 1,
         data:
             {
                 path: "",
                 rule: {key: "quantity", op: "is between", val: "5, 10"},
                 1: {
-                path: "1",
+                    path: "1",
                     rule: {key: "topic", op: "is equal to", val: "delivery"},
                     1: {
-                    path: "11",
+                        path: "11",
                         rule: {key: "date", op: "contains", val: "January"},
                         1: {
-                                path: "110",
+                                path: "111",
                                 to: "Jonathan" },
                         0: { path: "110" }
                         },
@@ -37,7 +37,7 @@ export const initialTrees = [
     {
         formId: 2,
         
-        name: "billing tree #1",
+        name: "New customer billing",
         id: 2,
         data:
             {
@@ -67,7 +67,7 @@ export const initialTrees = [
     {
         formId: 3,
         
-        name: "tech support tree #1",
+        name: "Employee software issues",
         id: 3,
         data:
             {
