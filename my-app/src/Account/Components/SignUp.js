@@ -4,13 +4,21 @@ import { Redirect } from "react-router-dom";
 import { withFormik, Form, Field } from "formik"
 import * as Yup from "yup"
 import axios from "axios"
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
+import { pulse } from "react-animations"
+
 
 const SignUpForm = ({ canRedirect, values, errors, touched, status }) => {
 
+  const signUpButtonAnimation = keyframes`${pulse}`;
+
+  const SignUpButton = styled.button`
+    animation: 1s infinite ${signUpButtonAnimation};
+  `
   const CenterH1 = styled.h1`
       text-align: center;
   `
+
 
   const [success, setSuccess] = useState(false)
 
@@ -22,8 +30,7 @@ const SignUpForm = ({ canRedirect, values, errors, touched, status }) => {
   }, [status])
 
   // redirect to dashboard if login is successful
-  if (canRedirect)
-    { return <Redirect to="/dashboard" />; }
+  if (canRedirect) { return <Redirect to="/dashboard" />; }
 
   return (
     <>
@@ -98,9 +105,9 @@ const SignUpForm = ({ canRedirect, values, errors, touched, status }) => {
             <Field id="checkbox" type="checkbox" name="ToS" checked={values.ToS} />
           </label>
         </div>
-        <button type="submit">
+        <SignUpButton type="submit">
           Sign up
-        </button>
+        </SignUpButton>
         {success ? (
           <p> Sign up successful! </p>
         ) : (<></>)}
@@ -150,14 +157,14 @@ const FormikSignUpForm = withFormik({
 
         // store token in localStorage
         localStorage.setItem("token", res.data.token);
-        
+
         setCanRedirect(true);
 
       })
       .catch(err => {
         console.log("Error signing up:", err);
-        
-        })
+
+      })
   }
 
 })(SignUpForm)
