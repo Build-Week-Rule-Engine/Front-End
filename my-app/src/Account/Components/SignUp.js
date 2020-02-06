@@ -2,11 +2,17 @@ import React, { useEffect, useState } from "react"
 import { withFormik, Form, Field } from "formik"
 import * as Yup from "yup"
 import axios from "axios"
+import styled from "styled-components"
 
 const SignUpForm = ({ values, errors, touched, status }) => {
 
+  const CenterH1 = styled.h1`
+      text-align: center;
+  `
+
   const [success, setSuccess] = useState(false)
 
+  let successtoo = true
   // use usesState to change the div to say that you succesfully signed up
 
   useEffect(() => {
@@ -25,12 +31,12 @@ const SignUpForm = ({ values, errors, touched, status }) => {
   return (
     <>
       <div>
-        <h1>SignUp</h1>
+        <CenterH1>SignUp</CenterH1>
       </div>
 
       <Form >
         <div>
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">Username: </label>
           <Field
             id="username"
             type="text"
@@ -42,7 +48,7 @@ const SignUpForm = ({ values, errors, touched, status }) => {
           )}
         </div>
         <div>
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">Email: </label>
           <Field
             id="email"
             type="email"
@@ -54,7 +60,7 @@ const SignUpForm = ({ values, errors, touched, status }) => {
           )}
         </div>
         <div>
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Password: </label>
           <Field
             id="password"
             type="password"
@@ -66,7 +72,7 @@ const SignUpForm = ({ values, errors, touched, status }) => {
           )}
         </div>
         <div>
-          <label htmlFor="passwordReEnter">Re-enter Password</label>
+          <label htmlFor="passwordReEnter">Re-enter Password: </label>
           <Field
             id="passwordReEnter"
             type="password"
@@ -78,7 +84,7 @@ const SignUpForm = ({ values, errors, touched, status }) => {
           )}
         </div>
         <div>
-          <label htmlFor="company">Company</label>
+          <label htmlFor="company">Company: </label>
           <Field
             id="company"
             type="text"
@@ -98,15 +104,9 @@ const SignUpForm = ({ values, errors, touched, status }) => {
         <button type="submit">
           Sign up
         </button>
-        {
-          success ? (
-            <p> Sign up successful! </p>
-          ) : (
-              <div>
-
-              </div>
-            )
-        }
+        {success ? (
+          <p> Sign up successful! </p>
+        ) : (<></>)}
       </Form>
     </>
   )
