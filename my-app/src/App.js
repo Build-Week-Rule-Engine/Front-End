@@ -6,21 +6,34 @@ import ProtectedRoute from './ProtectedRoute';
 
 import './App.css';
 import Account from "./Account/Account"
+import styled from "styled-components"
+import PendingRequests from './Account/PendingRequests/PendingRequests';
+import Navbar from './Navbar/Navbar';
 
 function App() {
+
+  const CenterDiv = styled.div`
+  width: 25%;
+  margin: 0 auto;
+  `
+
   return (
     <Router>
-      <div className="App">
-        <div>
-          {/*NavBar*/}
-        </div>
-        <Route path={"/"}>
-          <Account />
-        </Route>
-        <Route exact path="/dashboard" component={Dashboard} />
-        {/* <ProtectedRoute path="/dashboard/outline_view" component={Dashboard} /> */}
-        {/* <ProtectedRoute path="/dashboard" component={Dashboard} /> */}
+      <div>
+        <Navbar />
       </div>
+      <Route path={"/Account"}>
+        <CenterDiv>
+          <Account />
+        </CenterDiv>
+      </Route>
+      <Route path={"/Pendingrequests"}>
+        <PendingRequests />
+      </Route>
+      <Route exact path="/dashboard" component={Dashboard} />
+      {/* <ProtectedRoute path="/dashboard/outline_view" component={Dashboard} /> */}
+      {/* <ProtectedRoute path="/dashboard" component={Dashboard} /> */}
+
     </Router>
   );
 }
