@@ -27,10 +27,6 @@ const OutlineView = ({form, treeData, lastSelectedOption, deleteTreeNodeAndChild
         if (isEndNode(tree))
             { return tree; }
 
-        // // empty object {} found as a node
-        else if (!hasChildren(tree))
-            { return makeEndNode(); }
-
         // node contains a recipient
         else if (tree.to !== undefined)
             { return (
@@ -45,6 +41,10 @@ const OutlineView = ({form, treeData, lastSelectedOption, deleteTreeNodeAndChild
                     />
                 </div>
             ) }
+
+        // // empty object {} found as a node
+        else if (!hasChildren(tree))
+            { return makeEndNode(); }
 
         // node contains a rule and yes and no branches
         else
