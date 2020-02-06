@@ -9,7 +9,7 @@ const initialState = {
     treesAvailable: initialTrees,
     tree: initialTrees[0],
     
-    lastSelectedOption: "",
+    lastSelectedOption: {type: "", value: ""},
 
     errorMessage: "",
 
