@@ -30,9 +30,9 @@ function App() {
       <Route path={"/Pendingrequests"}>
         <PendingRequests />
       </Route>
-      <Route exact path="/dashboard" component={Dashboard} />
-      {/* <ProtectedRoute path="/dashboard/outline_view" component={Dashboard} /> */}
-      {/* <ProtectedRoute path="/dashboard" component={Dashboard} /> */}
+      
+      <ProtectedRoute path="/dashboard/outline_view" component={Dashboard} />
+      <ProtectedRoute path="/dashboard" component={Dashboard} />
 
     </Router>
   );

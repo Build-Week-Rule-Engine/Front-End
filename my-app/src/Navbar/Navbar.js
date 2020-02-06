@@ -15,26 +15,42 @@ const Navbar = (props) => {
   `
   return (
     <FlexDiv>
-      <Link to={"/Account/SignUp"}>
-        <p>
-          Register
-        </p>
-      </Link>
-      <Link to={"/Account/LogIn"}>
-        <p>
-          Log In
-        </p>
-      </Link>
-      <Link to={"/Dashboard"}>
-        <p>
-          Dashboard
-        </p>
-      </Link>
-      <Link to={"/PendingRequests"}>
-        <p>
-          Incoming requests
-        </p>
-      </Link>
+
+      { !localStorage.getItem("token") ?
+
+        <>
+          <Link to={"/Account/SignUp"}>
+            <p>
+              Register
+            </p>
+          </Link>
+          <Link to={"/Account/LogIn"}>
+            <p>
+              Log In
+            </p>
+          </Link>
+        </>
+      
+      :
+      <>
+        <Link to={"/Dashboard"}>
+          <p>
+            Dashboard
+          </p>
+        </Link>
+        <Link to={"/PendingRequests"}>
+          <p>
+            Incoming requests
+          </p>
+        </Link>
+        <Link to={"/LogOut"}>
+          <p>
+            Log Out
+          </p>
+        </Link>
+      </>
+
+      }
     </FlexDiv>
   )
 }
