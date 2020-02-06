@@ -199,7 +199,28 @@ export const reducer = (state = initialState, action) => {
 
         console.log("Reducer: deleting node and children at", action.payload)
 
-        return {...state };
+        // root element; just clear it
+        if (action.payload === "")
+            {
+                return {...state, tree: {...state.tree, data: { path: ""}},  }
+            }
+        
+        let nodePath = action.payload.split("");
+
+        let nodePathUpToParent = nodePath.slice(0, nodePath.length - 1);
+        let childBranch = nodePath.slice(-1);
+
+        let newTree = {...state.tree.data};
+        let treeWalker = newTree; // create a pointer to traverse newTree
+
+        // follow path to node
+        for (let location of nodePathUpToParent)
+            { treeWalker = treeWalker[location]; }
+
+        // reset parent node to point to new child (empty except for path)
+        treeWalker[childBranch] = { path: action.payload }
+
+        return {...state, tree: {...state.tree, data: newTree }};
 
     case CLEAR_RULE_AT_NODE:
 

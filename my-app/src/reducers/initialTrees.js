@@ -16,7 +16,7 @@ export const initialTrees = [
                     path: "11",
                         rule: {key: "date", op: "contains", val: "January"},
                         1: {
-                                path: "110",
+                                path: "111",
                                 to: "Jonathan" },
                         0: { path: "110" }
                         },
