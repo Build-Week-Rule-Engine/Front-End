@@ -1,8 +1,8 @@
 export const initialForms = [
     {
-        formName: "Sales",
-        formId: 0,
-        recipients: ["Zach", "Tyrone", "Kayla", "Steffie", "Grant"],
+        name: "Sales",
+        id: 0,
+        to: ["Zach", "Tyrone", "Kayla", "Steffie", "Grant"],
         fields: ["product", "price", "agent", "date", "state"],
         rules: {
             number: ["is less than", "is equal to"],
@@ -10,9 +10,9 @@ export const initialForms = [
         },
     },
     {
-        formName: "Billing",
-        formId: 1,
-        recipients: ["Dan", "Chester", "Brendan", "Lillie", "Candace"],
+        name: "Billing",
+        id: 1,
+        to: ["Dan", "Chester", "Brendan", "Lillie", "Candace"],
         fields: ["accountNumber", "agent", "service", "date", "ticketNumber"],
         rules: {
             number: ["is greater than or equal to", "is greater than", "is equal to"],
@@ -20,9 +20,9 @@ export const initialForms = [
         },
     },
     {
-        formName: "Tech Support",
-        formId: 2,
-        recipients: ["Eunice", "Jordan", "Alyssa", "Katie", "June"],
+        name: "Tech Support",
+        id: 2,
+        to: ["Eunice", "Jordan", "Alyssa", "Katie", "June"],
         fields: ["employeeId", "supervisor", "category", "date", "ticketNumber"],
         rules: {
             number: ["is equal to", "is between"],
