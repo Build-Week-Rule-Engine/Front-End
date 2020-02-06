@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState } from "react"
 import LogIn from "./Components/LogIn"
 import SignUp from "./Components/SignUp"
 import { Route, Link } from "react-router-dom"
@@ -11,6 +11,7 @@ const Account = (props) => {
   display: flex;
   justify-content: space-evenly;
   `
+  const [canRedirect, setCanRedirect] = useState(false);
 
   return (
     <>
@@ -23,10 +24,10 @@ const Account = (props) => {
         </Link>
       </CenterDiv>
       <Route path={"/Account/LogIn"}>
-        <LogIn />
+        <LogIn canRedirect={canRedirect} setCanRedirect={setCanRedirect} />
       </Route>
       <Route path={"/Account/SignUp"}>
-        <SignUp />
+        <SignUp canRedirect={canRedirect} setCanRedirect={setCanRedirect} />
       </Route>
     </>
   )

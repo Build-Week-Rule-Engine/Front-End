@@ -1,12 +1,16 @@
-//replace ed1t with variables as desired
+import React from "react"
+import { Redirect } from "react-router-dom";
 
-import React, { useHistory } from "react"
 import { withFormik, Form, Field } from "formik"
 import * as Yup from "yup"
 import axios from "axios"
 import styled from "styled-components"
 
 const LogInForm = (props) => {
+
+  // redirect to dashboard if login is successful
+  if (props.canRedirect)
+    { return <Redirect to="/dashboard" />; }
 
   const CenterH1 = styled.h1`
       text-align: center;
@@ -18,7 +22,7 @@ const LogInForm = (props) => {
         <CenterH1>LogIn</CenterH1>
       </div>
 
-      <Form >
+      <Form test="test">
         <div>
           <label htmlFor="username">Username: </label>
           <Field
@@ -44,10 +48,12 @@ const LogInForm = (props) => {
 }
 
 const FormikLogInForm = withFormik({
+
   mapPropsToValues(props) {
     return {
       username: props.username || "",
       password: props.password || "",
+      setCanRedirect: props.setCanRedirect
     }
   },
 
@@ -58,19 +64,26 @@ const FormikLogInForm = withFormik({
 
   handleSubmit(values, { setStatus, resetForm }) {
 
-    console.log(values, "to be submitted");
+    let setCanRedirect = values.setCanRedirect;
+    let loginInfo = { username: values.username, password: values.password };
+
+    console.log("to be submitted", loginInfo);
 
     axios
-      .post("https://build-4--rule-engine.herokuapp.com/auth/sign-in", values)
+      .post("https://build-4--rule-engine.herokuapp.com/auth/sign-in", loginInfo)
       .then(res => {
         console.log(res)
         setStatus(res.data)
         resetForm()
 
-        // useHistory().push("/dashboard");
+        setCanRedirect(true);
 
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        console.log("Error logging in:", err);
+        
+        })
+
   }
 
 })(LogInForm)
