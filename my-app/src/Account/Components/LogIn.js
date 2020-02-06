@@ -4,18 +4,23 @@ import React, { useHistory } from "react"
 import { withFormik, Form, Field } from "formik"
 import * as Yup from "yup"
 import axios from "axios"
+import styled from "styled-components"
 
 const LogInForm = (props) => {
+
+  const CenterH1 = styled.h1`
+      text-align: center;
+  `
 
   return (
     <>
       <div>
-        <h1>LogIn</h1>
+        <CenterH1>LogIn</CenterH1>
       </div>
 
       <Form >
         <div>
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">Username: </label>
           <Field
             id="username"
             type="text"
@@ -23,7 +28,7 @@ const LogInForm = (props) => {
           />
         </div>
         <div>
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Password: </label>
           <Field
             id="password"
             type="password"
@@ -62,7 +67,7 @@ const FormikLogInForm = withFormik({
         setStatus(res.data)
         resetForm()
 
-        useHistory().push("/dashboard");
+        // useHistory().push("/dashboard");
 
       })
       .catch(err => console.log(err))
