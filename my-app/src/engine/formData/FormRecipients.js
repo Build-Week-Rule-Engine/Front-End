@@ -7,7 +7,7 @@ const FormRecipients = ({form, updateLastSelectedOption}) => {
         <div className="formRecipients">
             <h2>Recipients</h2>
             <div className="formOptions">
-                {form.recipients.map(recipient =>
+                {form.to.map(recipient =>
                     <div className="formRecipient" key={"recipient_" + recipient} value={"recipient_" + recipient}
                     onClick={event => updateLastSelectedOption({type: "recipient", value: event.target.textContent})}>{recipient}</div>
                 )}
