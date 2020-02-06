@@ -10,10 +10,10 @@ export const initialTrees = [
                 path: "",
                 rule: {key: "quantity", op: "is between", val: "5, 10"},
                 1: {
-                path: "1",
+                    path: "1",
                     rule: {key: "topic", op: "is equal to", val: "delivery"},
                     1: {
-                    path: "11",
+                        path: "11",
                         rule: {key: "date", op: "contains", val: "January"},
                         1: {
                                 path: "111",

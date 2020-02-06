@@ -9,7 +9,12 @@ const OutlineView = ({form, treeData, lastSelectedOption, deleteTreeNodeAndChild
 
     const isUnfinishedNode = (node) => {
 
-        return Object.entries(node).length === 1; // only one property is present, the "path" string
+        return !node.rule; // rule property is missing
+    }
+
+    const hasChildren = (node) => {
+
+        return node["0"]; // check if child nodes exist
     }
 
     const makeEndNode = () => {
@@ -22,8 +27,8 @@ const OutlineView = ({form, treeData, lastSelectedOption, deleteTreeNodeAndChild
         if (isEndNode(tree))
             { return tree; }
 
-        // empty object {} found as a node
-        else if (isUnfinishedNode(tree))
+        // // empty object {} found as a node
+        else if (!hasChildren(tree))
             { return makeEndNode(); }
 
         // node contains a recipient
@@ -46,6 +51,10 @@ const OutlineView = ({form, treeData, lastSelectedOption, deleteTreeNodeAndChild
             {
                 return (
                     <div className="ruleAndChoices">
+
+                        {
+                            isUnfinishedNode(tree) ? makeEndNode() :
+                        
                         <div className="ruleBox">
                             <div className="formRule">{tree.rule.key}</div>
                             <div className="formOperator">{tree.rule.op}</div>
@@ -56,6 +65,8 @@ const OutlineView = ({form, treeData, lastSelectedOption, deleteTreeNodeAndChild
                                 updateRuleAtNode={updateRuleAtNode}
                             />
                         </div>
+
+                        }
 
                         <div className="choiceYes">
                             
