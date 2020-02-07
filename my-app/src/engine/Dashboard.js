@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import { generateRandomTree } from "../utils/generateRandomTree";
 import { renderTreeAsList } from "../utils/renderTreeAsList";
@@ -9,7 +10,7 @@ import { setCurrentTree, getAllForms, addForm, editForm, deleteForm } from "../a
 
 import "./dashboard.css";
 
-const Dashboard = ({ setCurrentTree, formsAvailable, getAllForms, addForm, editForm, deleteForm}) => {
+const Dashboard = ({ setCurrentTree, tree, formsAvailable, getAllForms, addForm, editForm, deleteForm}) => {
 
     const [suggestedTree, setSuggestedTree] = useState(generateRandomTree());
     const suggestNewTree = () => setSuggestedTree(generateRandomTree());
@@ -24,8 +25,10 @@ const Dashboard = ({ setCurrentTree, formsAvailable, getAllForms, addForm, editF
 
     }, [])
 
-    console.log(formsAvailable, "are the forms available in state");
-
+    const handleEditTree = () => {
+        setCurrentTree(suggestedTree);
+        return <Redirect to="/dashboard/editor" />;
+    }
 
     return (
         <div className="userDashboard">
@@ -42,8 +45,6 @@ const Dashboard = ({ setCurrentTree, formsAvailable, getAllForms, addForm, editF
                 
                 <div className="allFormsDisplay">
                     {formsAvailable.map(formData => {
-
-                            console.log(formData);
 
                             return (
 
@@ -77,7 +78,7 @@ const Dashboard = ({ setCurrentTree, formsAvailable, getAllForms, addForm, editF
 
                 
                 <button onClick={suggestNewTree} className="proposal proposalAnother">Get Another Route</button>
-                <button onClick={() => setCurrentTree(suggestedTree)} className="proposal proposalEdit">Edit This Route</button>
+                <button onClick={handleEditTree} className="proposal proposalEdit">Edit This Route</button>
 
                 {renderTreeAsList(suggestedTree)}
 

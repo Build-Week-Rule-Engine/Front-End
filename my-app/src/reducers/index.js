@@ -267,7 +267,7 @@ export const reducer = (state = initialState, action) => {
     
     case SET_CURRENT_TREE:
 
-        return {...state, currentTree: action.payload };
+        return {...state, tree: action.payload };
 
     // retrieve all forms from database and update formsAvailable
     case GET_ALL_FORMS:

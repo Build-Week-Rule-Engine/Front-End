@@ -105,8 +105,9 @@ const OutlineView = ({form, treeData, lastSelectedOption, deleteTreeNodeAndChild
 
     return (
         <div className="outlineView">
-            <h1>Route: {treeData.name} (Form ID: {treeData.formId})</h1>
-            <h2>Last clicked on: {lastSelectedOption.type} - {lastSelectedOption.value}</h2>
+            {/* <h1>Route: {treeData.name} (Form ID: {treeData.formId})</h1>
+            <h2>Last clicked on: {lastSelectedOption.type} - {lastSelectedOption.value}</h2> */}
+            <h1>{treeData.name}</h1>
             {createRoute(treeData.data)}
         </div>
     )
