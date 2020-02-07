@@ -38,6 +38,11 @@ const Navbar = (props) => {
             Dashboard
           </p>
         </Link>
+        <Link to={"/Dashboard/editor"}>
+          <p>
+            Editor
+          </p>
+        </Link>
         <Link to={"/PendingRequests"}>
           <p>
             Incoming requests
