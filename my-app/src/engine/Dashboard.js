@@ -18,6 +18,11 @@ const Dashboard = ({ setCurrentTree, tree, formsAvailable, getAllForms, addForm,
     // const [allForms, setAllForms] = useState(undefined);
     const [isLoadingForms, setIsLoadingForms] = useState(false);
 
+    const [isEditingForm, setIsEditingForms] = useState(false);
+    const [currentFormId, setCurrentFormId] = useState(undefined);
+    
+    const [userValue, setUserValue] = useState("");
+
     useEffect(() => {
 
         setIsLoadingForms(true);
@@ -28,6 +33,26 @@ const Dashboard = ({ setCurrentTree, tree, formsAvailable, getAllForms, addForm,
     const handleEditTree = () => {
         setCurrentTree(suggestedTree);
         return <Redirect to="/dashboard/editor" />;
+    }
+
+    const handleChange = event => {
+
+        setUserValue(event.target.value);
+    }
+
+    const handleSubmit = event => {
+
+        console.log("current form id", currentFormId)
+
+        event.preventDefault();
+        editForm(currentFormId, userValue);
+    }
+
+    const toggleEdit = (formData) => {
+
+        setIsEditingForms(!isEditingForm);
+        setCurrentFormId(formData);
+
     }
 
     return (
@@ -49,7 +74,7 @@ const Dashboard = ({ setCurrentTree, tree, formsAvailable, getAllForms, addForm,
                             return (
 
                                 <div key={"form_" + formData["_id"]} className="singleFormRow">
-                                    <button className="formEditButton" onClick={() => editForm(formData["_id"])}>&#128393;</button>
+                                    <button className="formEditButton" onClick={() => toggleEdit(formData)}>&#128393;</button>
                                     <p>{formData.name}</p>
                                     <button className="formDeleteButton" onClick={() => deleteForm(formData["_id"])}>🗑</button>
                                 </div>
@@ -61,7 +86,18 @@ const Dashboard = ({ setCurrentTree, tree, formsAvailable, getAllForms, addForm,
                 }
 
                 <div className="editFormContainer">
+                    {
+                        isEditingForm ?
+                        <form name="edit">
 
+                            <h3>Edit form name</h3>
+
+                            <input name="name" onChange={handleChange} value={userValue} />
+                            <button onClick={handleSubmit}>Edit name</button>
+                        </form>
+                        :
+                        ""
+                    }
                 </div>
 
             </div>

@@ -280,7 +280,19 @@ export const reducer = (state = initialState, action) => {
 
     case EDIT_FORM:
 
-        return state;
+        let oldForms = state.formsAvailable.slice();
+
+        let newForms = [];
+
+        for (let form of oldForms)
+            {
+                if (form["_id"] === action.payload["_id"])
+                    { newForms.push(action.payload)}
+                else
+                    { newForms.push(form)}
+            }
+
+        return {...state, formsAvailable: newForms};
     
     case DELETE_FORM:
 

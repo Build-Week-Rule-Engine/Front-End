@@ -167,11 +167,26 @@ export const addForm = () => dispatch => {
  
 }
 
-export const editForm = (id, formData) => dispatch => {
+export const editForm = (formData, userValue) => dispatch => {
 
-    console.log("Action creator: Editing form...", id, formData);
+    console.log("Action creator: Editing form...", formData);
 
-    dispatch({ type: EDIT_FORM, payload: [id, formData]});
+    let newForm = {...formData, name: userValue}
+    let id = formData["_id"];
+
+    axiosWithAuth()
+    .put(`https://build-4--rule-engine.herokuapp.com/api/forms/${id}`, newForm)
+    .then(response => {
+        
+        console.log("Edited form:", response);
+        console.log("Remaining forms:", response.data.data);
+
+        dispatch({ type: EDIT_FORM, payload: newForm});        
+    })
+    .catch(error => {
+        console.log("Error editing form with database:", error);
+    })
+
 }
 
 export const deleteForm = (id) => dispatch => {
