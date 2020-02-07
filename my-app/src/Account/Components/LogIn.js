@@ -76,6 +76,9 @@ const FormikLogInForm = withFormik({
         setStatus(res.data)
         resetForm()
 
+        // store token in localStorage
+        localStorage.setItem("token", res.data.token);
+
         setCanRedirect(true);
 
       })

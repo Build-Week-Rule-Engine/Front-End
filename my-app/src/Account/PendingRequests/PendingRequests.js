@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios"
 import styled from "styled-components"
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
 
 const PendingRequests = (props) => {
@@ -14,10 +15,10 @@ const PendingRequests = (props) => {
   width: 70%;
   display: flex;
   justify-content: space-evenly;
-  `
 
+  `
   useEffect(() => {
-    axios
+    axiosWithAuth()
       .get(`https://build-4--rule-engine.herokuapp.com/api/forms`)
       .then(res => {
         setErrorFound(false)

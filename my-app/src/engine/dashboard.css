@@ -1,0 +1,101 @@
+* {
+    box-sizing: border-box;
+    /* border: 1px solid #999999; */
+}
+
+.userDashboard {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.allForms, .allTrees {
+    width: 48%;
+    min-height: 50vh;
+}
+
+ul {
+    
+}
+
+li {
+    text-align: left;
+    
+    /* margin: 0.25rem auto; */
+}
+
+.listKey, .listOp, .listVal, .listTo, .listTBD {
+    display: inline-block;
+    margin: 0.125rem 0.25rem;
+    padding: 0.125rem;
+    color: white;
+}
+
+.listKey {
+    background-color: #666666;
+}
+
+.listOp {
+    background-color: #999999;
+}
+
+.listVal {
+    color: black;
+    background-color: #EEEEEE;
+}
+
+.listTo {
+    color: black;
+    background-color: #CCCCCC;
+}
+
+.listTBD {
+    color: black;
+    background-color: #CCCCCC;
+}
+
+.proposal, .formAddButton {
+    line-height: 2rem;
+    padding: 0 1rem;
+
+    font-size: 1rem;
+    font-weight: bold;
+
+    margin: 0 1rem;
+
+    color: black;
+    background-color: #CCCCCC;
+    border: none;
+
+    cursor: pointer;
+
+}
+
+.proposal:hover {
+    
+    background-color: #999999;
+}
+
+.allFormsDisplay {
+    
+}
+
+.singleFormRow {
+
+    width: 50%;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.formDeleteButton, .formEditButton {
+    font-size: 1.5rem;
+    margin: -0.5rem auto;
+
+    cursor: pointer;
+}

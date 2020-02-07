@@ -48,6 +48,11 @@ import {
     CLEAR_RULE_AT_NODE,
     UPDATE_RULE_AT_NODE,
 
+    GET_ALL_FORMS,
+    ADD_FORM,
+    EDIT_FORM,
+    DELETE_FORM
+
 } from "../actions";
 
 import initialState from "./initialState";
@@ -253,12 +258,49 @@ export const reducer = (state = initialState, action) => {
 
         return {...state, tree: {...state.tree, data: newTree }};
     }
+
     case UPDATE_RULE_AT_NODE:
 
         console.log("Reducer: updating rule at", action.payload)
 
         return {...state };
     
+    case SET_CURRENT_TREE:
+
+        return {...state, tree: action.payload };
+
+    // retrieve all forms from database and update formsAvailable
+    case GET_ALL_FORMS:
+
+        return {...state, formsAvailable: action.payload};
+
+    case ADD_FORM:
+
+        return {...state, formsAvailable: [...state.formsAvailable, action.payload]};
+
+    case EDIT_FORM:
+
+        let oldForms = state.formsAvailable.slice();
+
+        let newForms = [];
+
+        for (let form of oldForms)
+            {
+                if (form["_id"] === action.payload["_id"])
+                    { newForms.push(action.payload)}
+                else
+                    { newForms.push(form)}
+            }
+
+        return {...state, formsAvailable: newForms};
+    
+    case DELETE_FORM:
+
+        let currentForms = state.formsAvailable;
+        let remainingForms = currentForms.filter(form => form["_id"] !== action.payload);
+
+        return {...state, formsAvailable: remainingForms};
+
     default:
 
         return state;

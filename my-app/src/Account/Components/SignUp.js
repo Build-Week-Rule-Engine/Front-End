@@ -22,7 +22,7 @@ const SignUpForm = ({ canRedirect, values, errors, touched, status }) => {
 
   const [success, setSuccess] = useState(false)
 
-  let successtoo = true
+  // let successtoo = true
   // use usesState to change the div to say that you succesfully signed up
 
   useEffect(() => {

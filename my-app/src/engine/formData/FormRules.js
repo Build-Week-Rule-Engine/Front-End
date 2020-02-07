@@ -1,6 +1,13 @@
 import React from "react";
 
-const FormRules = ({form, updateLastSelectedOption}) => {
+const FormRules = ({updateLastSelectedOption}) => {
+
+    let form = {
+        rules: {
+            number: ["is less than", "is equal to"],
+            text: ["is equal to", "contains"],
+        }
+    }
 
     return (
         <div className="formRules">

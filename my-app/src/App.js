@@ -1,5 +1,6 @@
 import React from 'react';
 import Dashboard from "./engine/Dashboard";
+import TreeEditor from "./engine/TreeEditor";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import ProtectedRoute from './ProtectedRoute';
@@ -30,9 +31,9 @@ function App() {
       <Route path={"/Pendingrequests"}>
         <PendingRequests />
       </Route>
-      <Route exact path="/dashboard" component={Dashboard} />
-      {/* <ProtectedRoute path="/dashboard/outline_view" component={Dashboard} /> */}
-      {/* <ProtectedRoute path="/dashboard" component={Dashboard} /> */}
+      
+      <ProtectedRoute path="/dashboard/editor" component={TreeEditor} />
+      <ProtectedRoute exact path="/dashboard" component={Dashboard} />
 
     </Router>
   );

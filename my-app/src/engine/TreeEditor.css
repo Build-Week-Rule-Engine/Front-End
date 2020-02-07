@@ -1,9 +1,9 @@
 * {
     box-sizing: border-box;
-    /* border: 1px solid #CCCCCC; */
+    text-align: center;
 }
 
-.dashboardContainer {
+.treeEditorContainer {
     display: flex;
     max-width: 1200px;
     margin: 0 auto;

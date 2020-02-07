@@ -1,7 +1,4 @@
 import React from "react"
-import { withFormik, Form, Field } from "formik"
-import * as Yup from "yup"
-import axios from "axios"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
@@ -15,26 +12,47 @@ const Navbar = (props) => {
   `
   return (
     <FlexDiv>
-      <Link to={"/Account/SignUp"}>
-        <p>
-          Register
-        </p>
-      </Link>
-      <Link to={"/Account/LogIn"}>
-        <p>
-          Log In
-        </p>
-      </Link>
-      <Link to={"/Dashboard"}>
-        <p>
-          Dashboard
-        </p>
-      </Link>
-      <Link to={"/PendingRequests"}>
-        <p>
-          Incoming requests
-        </p>
-      </Link>
+
+      { !localStorage.getItem("token") ?
+
+        <>
+          <Link to={"/Account/SignUp"}>
+            <p>
+              Register
+            </p>
+          </Link>
+          <Link to={"/Account/LogIn"}>
+            <p>
+              Log In
+            </p>
+          </Link>
+        </>
+      
+      :
+      <>
+        <Link to={"/Dashboard"}>
+          <p>
+            Dashboard
+          </p>
+        </Link>
+        <Link to={"/Dashboard/editor"}>
+          <p>
+            Editor
+          </p>
+        </Link>
+        <Link to={"/PendingRequests"}>
+          <p>
+            Incoming requests
+          </p>
+        </Link>
+        <Link to={"/LogOut"}>
+          <p>
+            Log Out
+          </p>
+        </Link>
+      </>
+
+      }
     </FlexDiv>
   )
 }
