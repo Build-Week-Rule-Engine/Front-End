@@ -57,7 +57,7 @@ li {
     background-color: #CCCCCC;
 }
 
-.proposal {
+.proposal, .formAddButton {
     line-height: 2rem;
     padding: 0 1rem;
 
@@ -71,9 +71,31 @@ li {
     border: none;
 
     cursor: pointer;
+
 }
 
 .proposal:hover {
     
     background-color: #999999;
+}
+
+.allFormsDisplay {
+    
+}
+
+.singleFormRow {
+
+    width: 50%;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.formDeleteButton, .formEditButton {
+    font-size: 1.5rem;
+    margin: -0.5rem auto;
+
+    cursor: pointer;
 }

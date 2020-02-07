@@ -22,7 +22,7 @@ const Dashboard = () => {
             .then(response => {
                 console.log("Forms returned from database:", response);
 
-                setAllForms("test");
+                setAllForms(response.data);
                 setIsLoadingForms(false);
 
             })
@@ -34,6 +34,61 @@ const Dashboard = () => {
 
     }, [])
 
+    const editForm = (id) => {
+
+        return;
+    }
+
+    const deleteForm = (id) => {
+
+        console.log("attempting to delete with id", id)
+
+        axiosWithAuth()
+            .delete(`https://build-4--rule-engine.herokuapp.com/api/forms/${id}`)
+            .then(response => {
+                console.log("Deleted form from database:", response);
+
+                console.log("Remaining forms:", response.data.data);
+
+                // store remaining forms in state
+                let remainingForms = allForms.filter(form => form["_id"] !== id);
+
+                setAllForms(remainingForms);
+            })
+            .catch(error => {
+                console.log("Error deleting form from database:", error);
+
+            })
+    }
+
+    const addForm = () => {
+
+        const newForm = {
+            name: "New Form",
+            data: {
+                to: ["recipient"],
+                fields: ["field"],
+                rules: {
+                    number: ["is equal to"],
+                    text: ["contains"],
+                }
+            }
+        }
+
+        axiosWithAuth()
+            .post(`https://build-4--rule-engine.herokuapp.com/api/forms/`, newForm)
+            .then(response => {
+                console.log("Added form to database:", response);
+
+                setAllForms([...allForms, response.data]);
+            })
+            .catch(error => {
+                console.log("Error adding form to database:", error);
+
+            })
+    }
+
+
     return (
         <div className="userDashboard">
             <div className="allForms">
@@ -43,7 +98,32 @@ const Dashboard = () => {
                     Below are all the forms in use at your organization.
                 </h3>
 
-                {!allForms || isLoadingForms ? "Loading forms..." : "forms!"}
+                <button className="formAddButton" onClick={() => addForm()}>Add new form</button>
+
+                {!allForms || isLoadingForms ? <p>Loading forms...</p> : 
+                
+                <div className="allFormsDisplay">
+                    {allForms.map(formData => {
+
+                            console.log(formData);
+
+                            return (
+
+                                <div key={"form_" + formData["_id"]} className="singleFormRow">
+                                    <button className="formEditButton" onClick={() => editForm(formData["_id"])}>&#128393;</button>
+                                    <p>{formData.name}</p>
+                                    <button className="formDeleteButton" onClick={() => deleteForm(formData["_id"])}>🗑</button>
+                                </div>
+
+                            )})
+                    }
+                </div>
+
+                }
+
+                <div className="editFormContainer">
+
+                </div>
 
             </div>
             <div className="allTrees">
@@ -59,7 +139,7 @@ const Dashboard = () => {
 
                 
                 <button onClick={suggestNewTree} className="proposal proposalAnother">Get Another Route</button>
-                <button onClick={suggestNewTree} className="proposal proposalAnother">Edit This Route</button>
+                <button onClick={suggestNewTree} className="proposal proposalEdit">Edit This Route</button>
 
                 {renderTreeAsList(suggestedTree)}
 
