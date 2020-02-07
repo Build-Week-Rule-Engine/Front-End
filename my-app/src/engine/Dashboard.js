@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { generateRandomTree } from "../utils/generateRandomTree";
 import { renderTreeAsList } from "../utils/renderTreeAsList";
 
@@ -6,10 +6,8 @@ import "./dashboard.css";
 
 const Dashboard = () => {
 
-    const demoTrees = [];
-
-    for (let i = 0; i < 2; i++)
-        { demoTrees.push(generateRandomTree()); }
+    const [suggestedTree, setSuggestedTree] = useState(generateRandomTree());
+    const suggestNewTree = () => setSuggestedTree(generateRandomTree());
 
     return (
         <div className="userDashboard">
@@ -17,9 +15,21 @@ const Dashboard = () => {
                 <h2>forms</h2>
             </div>
             <div className="allTrees">
-                <h2>trees</h2>
+                <h2>Suggested Routes</h2>
 
-                {demoTrees.map(tree => renderTreeAsList(tree))}
+                <h3>
+                    The route below was proposed by your organization's HR department.
+                </h3>
+
+                <p>
+                    Click "Edit This Route" to refine the route, or click "Get Another Route" to see another suggested route.
+                </p>
+
+                
+                <button onClick={suggestNewTree} className="proposal proposalAnother">Get Another Route</button>
+                <button onClick={suggestNewTree} className="proposal proposalAnother">Edit This Route</button>
+
+                {renderTreeAsList(suggestedTree)}
 
             </div>
         </div>

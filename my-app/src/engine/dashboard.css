@@ -53,3 +53,24 @@ li {
     color: black;
     background-color: #CCCCCC;
 }
+
+.proposal {
+    line-height: 2rem;
+    padding: 0 1rem;
+
+    font-size: 1rem;
+    font-weight: bold;
+
+    margin: 0 1rem;
+
+    color: black;
+    background-color: #CCCCCC;
+    border: none;
+
+    cursor: pointer;
+}
+
+.proposal:hover {
+    
+    background-color: #999999;
+}
