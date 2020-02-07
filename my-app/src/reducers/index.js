@@ -264,13 +264,14 @@ export const reducer = (state = initialState, action) => {
 
         return {...state };
     
+    // retrieve all forms from database and update formsAvailable
     case GET_ALL_FORMS:
 
-        return state;
+        return {...state, formsAvailable: action.payload};
 
     case ADD_FORM:
 
-        return state;
+        return {...state, formsAvailable: [...state.formsAvailable, action.payload]};
 
     case EDIT_FORM:
 
@@ -278,8 +279,11 @@ export const reducer = (state = initialState, action) => {
     
     case DELETE_FORM:
 
-        return state;
-        
+        let currentForms = state.formsAvailable;
+        let remainingForms = currentForms.filter(form => form["_id"] !== action.payload);
+
+        return {...state, formsAvailable: remainingForms};
+
     default:
 
         return state;

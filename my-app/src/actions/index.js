@@ -1,4 +1,5 @@
 import axios from "axios";
+import {axiosWithAuth} from "../utils/axiosWithAuth";
 
 export const FETCHING_USER_START = "FETCHING_USER_START";
 export const FETCHING_USER_SUCCESS = "FETCHING_USER_SUCCESS";
@@ -115,14 +116,48 @@ export const getAllForms = () => dispatch => {
 
     console.log("Action creator: getting all forms...");
 
-    dispatch({ type: GET_ALL_FORMS});
+    axiosWithAuth()
+    .get(`https://build-4--rule-engine.herokuapp.com/api/forms`)
+    .then(response => {
+        console.log("Forms returned from database:", response);
+
+        dispatch({ type: GET_ALL_FORMS, payload: response.data});
+
+    })
+    .catch(error => {
+        console.log("Error getting forms database:", error);
+
+    })
 }
 
-export const addForm = (formData) => dispatch => {
+export const addForm = () => dispatch => {
 
-    console.log("Action creator: adding form...", formData);
+    console.log("Action creator: adding form...");
 
-    dispatch({ type: ADD_FORM, payload: formData});
+    const newForm = {
+        name: "New Form",
+        data: {
+            to: ["recipient"],
+            fields: ["field"],
+            rules: {
+                number: ["is equal to"],
+                text: ["contains"],
+            }
+        }
+    }
+
+    axiosWithAuth()
+        .post(`https://build-4--rule-engine.herokuapp.com/api/forms/`, newForm)
+        .then(response => {
+            console.log("Added form to database:", response);
+
+            dispatch({ type: ADD_FORM, payload: newForm});
+        })
+        .catch(error => {
+            console.log("Error adding form to database:", error);
+
+        })
+ 
 }
 
 export const editForm = (id, formData) => dispatch => {
@@ -133,8 +168,19 @@ export const editForm = (id, formData) => dispatch => {
 }
 
 export const deleteForm = (id) => dispatch => {
-
+    
     console.log("Action creator: Deleting form...", id);
 
-    dispatch({ type: DELETE_FORM, payload: id});
+    axiosWithAuth()
+        .delete(`https://build-4--rule-engine.herokuapp.com/api/forms/${id}`)
+        .then(response => {
+            
+            console.log("Deleted form from database:", response);
+            console.log("Remaining forms:", response.data.data);
+
+            dispatch({ type: DELETE_FORM, payload: id});        
+        })
+        .catch(error => {
+            console.log("Error deleting form from database:", error);
+        })
 }

@@ -9,88 +9,22 @@ import { getAllForms, addForm, editForm, deleteForm } from "../actions";
 
 import "./dashboard.css";
 
-const Dashboard = ({ getAllForms, addForm, editForm, deleteForm}) => {
+const Dashboard = ({ formsAvailable, getAllForms, addForm, editForm, deleteForm}) => {
 
     const [suggestedTree, setSuggestedTree] = useState(generateRandomTree());
     const suggestNewTree = () => setSuggestedTree(generateRandomTree());
 
-    const [allForms, setAllForms] = useState(undefined);
+    // const [allForms, setAllForms] = useState(undefined);
     const [isLoadingForms, setIsLoadingForms] = useState(false);
 
     useEffect(() => {
 
         setIsLoadingForms(true);
-
-        axiosWithAuth()
-            .get(`https://build-4--rule-engine.herokuapp.com/api/forms`)
-            .then(response => {
-                console.log("Forms returned from database:", response);
-
-                setAllForms(response.data);
-                setIsLoadingForms(false);
-
-            })
-            .catch(error => {
-                console.log("Error getting forms database:", error);
-
-            })
-
+        getAllForms();
 
     }, [])
 
-    const editForm = (id) => {
-
-        return;
-    }
-
-    const deleteForm = (id) => {
-
-        console.log("attempting to delete with id", id)
-
-        axiosWithAuth()
-            .delete(`https://build-4--rule-engine.herokuapp.com/api/forms/${id}`)
-            .then(response => {
-                console.log("Deleted form from database:", response);
-
-                console.log("Remaining forms:", response.data.data);
-
-                // store remaining forms in state
-                let remainingForms = allForms.filter(form => form["_id"] !== id);
-
-                setAllForms(remainingForms);
-            })
-            .catch(error => {
-                console.log("Error deleting form from database:", error);
-
-            })
-    }
-
-    const addForm = () => {
-
-        const newForm = {
-            name: "New Form",
-            data: {
-                to: ["recipient"],
-                fields: ["field"],
-                rules: {
-                    number: ["is equal to"],
-                    text: ["contains"],
-                }
-            }
-        }
-
-        axiosWithAuth()
-            .post(`https://build-4--rule-engine.herokuapp.com/api/forms/`, newForm)
-            .then(response => {
-                console.log("Added form to database:", response);
-
-                setAllForms([...allForms, response.data]);
-            })
-            .catch(error => {
-                console.log("Error adding form to database:", error);
-
-            })
-    }
+    console.log(formsAvailable, "are the forms available in state");
 
 
     return (
@@ -104,10 +38,10 @@ const Dashboard = ({ getAllForms, addForm, editForm, deleteForm}) => {
 
                 <button className="formAddButton" onClick={() => addForm()}>Add new form</button>
 
-                {!allForms || isLoadingForms ? <p>Loading forms...</p> : 
+                {!formsAvailable || formsAvailable.length === 0 ? <p>Loading forms...</p> : 
                 
                 <div className="allFormsDisplay">
-                    {allForms.map(formData => {
+                    {formsAvailable.map(formData => {
 
                             console.log(formData);
 
