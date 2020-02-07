@@ -28,9 +28,9 @@ function App() {
           <Account />
         </CenterDiv>
       </Route>
-      <Route path={"/Pendingrequests"}>
+      <ProtectedRoute path={"/Pendingrequests"}>
         <PendingRequests />
-      </Route>
+      </ProtectedRoute>
       
       <ProtectedRoute path="/dashboard/editor" component={TreeEditor} />
       <ProtectedRoute exact path="/dashboard" component={Dashboard} />
