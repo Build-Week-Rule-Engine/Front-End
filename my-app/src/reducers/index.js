@@ -258,12 +258,17 @@ export const reducer = (state = initialState, action) => {
 
         return {...state, tree: {...state.tree, data: newTree }};
     }
+
     case UPDATE_RULE_AT_NODE:
 
         console.log("Reducer: updating rule at", action.payload)
 
         return {...state };
     
+    case SET_CURRENT_TREE:
+
+        return {...state, currentTree: action.payload };
+
     // retrieve all forms from database and update formsAvailable
     case GET_ALL_FORMS:
 

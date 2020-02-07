@@ -42,6 +42,7 @@ export const DELETING_TREE_SUCCESS = "DELETING_TREE_SUCCESS";
 export const DELETING_TREE_FAILURE = "DELETING_TREE_FAILURE";
 
 export const CHANGE_FORM = "CHANGE_FORM";
+export const SET_CURRENT_TREE = "SET_CURRENT_TREE";
 
 export const UPDATE_LAST_SELECTED_OPTION = "UPDATE_LAST_SELECTED_OPTION";
 
@@ -111,6 +112,12 @@ export const updateRuleAtNode = (path) => dispatch => {
     dispatch({ type: UPDATE_RULE_AT_NODE, payload: path});
 }
 
+export const setCurrentTree = (tree) => dispatch => {
+
+    console.log("Action creator: setting curren tree...")
+
+    dispatch({ type: SET_CURRENT_TREE, payload: tree})
+}
 
 export const getAllForms = () => dispatch => {
 

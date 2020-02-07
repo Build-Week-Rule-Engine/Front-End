@@ -1,7 +1,8 @@
 import React from "react";
 
-const FormRecipients = ({form, updateLastSelectedOption}) => {
+const FormRecipients = ({updateLastSelectedOption}) => {
 
+    let form = {to: ["Zach", "Tyrone", "Kayla", "Steffie", "Grant"]};
 
     return (
         <div className="formRecipients">

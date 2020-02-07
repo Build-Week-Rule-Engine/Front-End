@@ -5,11 +5,11 @@ import { generateRandomTree } from "../utils/generateRandomTree";
 import { renderTreeAsList } from "../utils/renderTreeAsList";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-import { getAllForms, addForm, editForm, deleteForm } from "../actions";
+import { setCurrentTree, getAllForms, addForm, editForm, deleteForm } from "../actions";
 
 import "./dashboard.css";
 
-const Dashboard = ({ formsAvailable, getAllForms, addForm, editForm, deleteForm}) => {
+const Dashboard = ({ setCurrentTree, formsAvailable, getAllForms, addForm, editForm, deleteForm}) => {
 
     const [suggestedTree, setSuggestedTree] = useState(generateRandomTree());
     const suggestNewTree = () => setSuggestedTree(generateRandomTree());
@@ -77,7 +77,7 @@ const Dashboard = ({ formsAvailable, getAllForms, addForm, editForm, deleteForm}
 
                 
                 <button onClick={suggestNewTree} className="proposal proposalAnother">Get Another Route</button>
-                <button onClick={suggestNewTree} className="proposal proposalEdit">Edit This Route</button>
+                <button onClick={() => setCurrentTree(suggestedTree)} className="proposal proposalEdit">Edit This Route</button>
 
                 {renderTreeAsList(suggestedTree)}
 
@@ -105,4 +105,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, { getAllForms, addForm, editForm, deleteForm })(Dashboard);
+export default connect(mapStateToProps, { setCurrentTree, getAllForms, addForm, editForm, deleteForm })(Dashboard);

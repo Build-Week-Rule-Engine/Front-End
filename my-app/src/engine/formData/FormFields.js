@@ -1,7 +1,8 @@
 import React from "react";
 
-const FormFields = ({form, updateLastSelectedOption}) => {
+const FormFields = ({updateLastSelectedOption}) => {
 
+    let form = {fields: ["product", "price", "agent", "date", "state"] }
 
     return (
         <div className="formFields">
