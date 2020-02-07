@@ -1,3 +1,5 @@
+import { ucFirst } from "./ucFirst";
+
 export const generateRandomTree = (formId, ) => {
 
     let operatorsNumber = "is equal to|is less than|is greater than|is less than or equal to|is greater than or equal to|is at most|is under|is at least|is not equal to".split("|");
@@ -68,7 +70,7 @@ export const generateRandomTree = (formId, ) => {
     
     let tree = {
         formId: Date.now(),
-        name: randItem(adjectives) + " " + randItem(nouns) + " route",
+        name: ucFirst(randItem(adjectives)) + " " + ucFirst(randItem(nouns)) + " Route",
         data: makeTree("")
     }
 
