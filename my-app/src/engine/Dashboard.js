@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+
 import { generateRandomTree } from "../utils/generateRandomTree";
 import { renderTreeAsList } from "../utils/renderTreeAsList";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
+import { getFormList, addToFormList, editFormInList, deleteFormFromList } from "../actions";
+
 import "./dashboard.css";
 
-const Dashboard = () => {
+const Dashboard = ({getFormList, addToFormList, editFormInList, deleteFormFromList}) => {
 
     const [suggestedTree, setSuggestedTree] = useState(generateRandomTree());
     const suggestNewTree = () => setSuggestedTree(generateRandomTree());
@@ -148,4 +152,23 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard;
+
+const mapStateToProps = (state) => {
+
+    return {
+        formsAvailable: state.formsAvailable,
+        formId: state.formId,
+        form: state.form,
+
+        treesAvailable: state.treesAvailable,
+        treeId: state.treeId,
+        tree: state.tree,
+
+        lastSelectedOption: state.lastSelectedOption,
+        
+        errorMessage: state.errorMessage,
+    }
+}
+
+
+export default connect(mapStateToProps, {getFormList, addToFormList, editFormInList, deleteFormFromList })(Dashboard);

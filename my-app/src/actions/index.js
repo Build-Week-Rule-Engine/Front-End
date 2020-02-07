@@ -48,6 +48,11 @@ export const DELETE_TREE_NODE_AND_CHILDREN = "DELETE_TREE_NODE_AND_CHILDREN";
 export const UPDATE_RULE_AT_NODE = "UPDATE_RULE_AT_NODE";
 export const CLEAR_RULE_AT_NODE = "CLEAR_RULE_AT_NODE";
 
+export const GET_ALL_FORMS = "GET_ALL_FORMS";
+export const ADD_FORM = "ADD_FORM";
+export const EDIT_FORM = "EDIT_FORM";
+export const DELETE_FORM = "DELETE_FORM";
+
 // export const SET_CURRENT_TREE = "SET_CURRENT_TREE";
 
 export const addUser = (userData) => dispatch => {
@@ -103,4 +108,33 @@ export const updateRuleAtNode = (path) => dispatch => {
     console.log("Action creator: updating rule at...", path)
 
     dispatch({ type: UPDATE_RULE_AT_NODE, payload: path});
+}
+
+
+export const getFormList = () => dispatch => {
+
+    console.log("Action creator: getting all forms...");
+
+    dispatch({ type: GET_ALL_FORMS});
+}
+
+export const addToFormList = (formData) => dispatch => {
+
+    console.log("Action creator: adding form...", formData);
+
+    dispatch({ type: ADD_FORM, payload: formData});
+}
+
+export const editFormInList = (id, formData) => dispatch => {
+
+    console.log("Action creator: Editing form...", id, formData);
+
+    dispatch({ type: EDIT_FORM, payload: [id, formData]});
+}
+
+export const deleteFormFromList = (id) => dispatch => {
+
+    console.log("Action creator: Deleting form...", id);
+
+    dispatch({ type: DELETE_FORM, payload: id});
 }
