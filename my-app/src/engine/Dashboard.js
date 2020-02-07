@@ -5,11 +5,11 @@ import { generateRandomTree } from "../utils/generateRandomTree";
 import { renderTreeAsList } from "../utils/renderTreeAsList";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-import { getFormList, addToFormList, editFormInList, deleteFormFromList } from "../actions";
+import { getAllForms, addForm, editForm, deleteForm } from "../actions";
 
 import "./dashboard.css";
 
-const Dashboard = ({getFormList, addToFormList, editFormInList, deleteFormFromList}) => {
+const Dashboard = ({ getAllForms, addForm, editForm, deleteForm}) => {
 
     const [suggestedTree, setSuggestedTree] = useState(generateRandomTree());
     const suggestNewTree = () => setSuggestedTree(generateRandomTree());
@@ -171,4 +171,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, {getFormList, addToFormList, editFormInList, deleteFormFromList })(Dashboard);
+export default connect(mapStateToProps, { getAllForms, addForm, editForm, deleteForm })(Dashboard);

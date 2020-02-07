@@ -48,6 +48,11 @@ import {
     CLEAR_RULE_AT_NODE,
     UPDATE_RULE_AT_NODE,
 
+    GET_ALL_FORMS,
+    ADD_FORM,
+    EDIT_FORM,
+    DELETE_FORM
+
 } from "../actions";
 
 import initialState from "./initialState";
@@ -259,6 +264,22 @@ export const reducer = (state = initialState, action) => {
 
         return {...state };
     
+    case GET_ALL_FORMS:
+
+        return state;
+
+    case ADD_FORM:
+
+        return state;
+
+    case EDIT_FORM:
+
+        return state;
+    
+    case DELETE_FORM:
+
+        return state;
+        
     default:
 
         return state;

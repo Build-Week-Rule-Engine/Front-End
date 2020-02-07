@@ -111,28 +111,28 @@ export const updateRuleAtNode = (path) => dispatch => {
 }
 
 
-export const getFormList = () => dispatch => {
+export const getAllForms = () => dispatch => {
 
     console.log("Action creator: getting all forms...");
 
     dispatch({ type: GET_ALL_FORMS});
 }
 
-export const addToFormList = (formData) => dispatch => {
+export const addForm = (formData) => dispatch => {
 
     console.log("Action creator: adding form...", formData);
 
     dispatch({ type: ADD_FORM, payload: formData});
 }
 
-export const editFormInList = (id, formData) => dispatch => {
+export const editForm = (id, formData) => dispatch => {
 
     console.log("Action creator: Editing form...", id, formData);
 
     dispatch({ type: EDIT_FORM, payload: [id, formData]});
 }
 
-export const deleteFormFromList = (id) => dispatch => {
+export const deleteForm = (id) => dispatch => {
 
     console.log("Action creator: Deleting form...", id);
 
