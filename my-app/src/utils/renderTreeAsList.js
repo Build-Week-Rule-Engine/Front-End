@@ -8,7 +8,7 @@ export const renderTreeAsList = (treeToRender) => {
 
         // node only contains recipient
         if (tree.to)
-            { return <span className="listTo">{tree.to}</span>; }
+            { return <span className="listTo">send to {tree.to}</span>; }
 
         // empty node
         else if (Object.keys(tree).length === 1)
@@ -18,18 +18,15 @@ export const renderTreeAsList = (treeToRender) => {
         else
             {
                 return (
-                    <ul>
-                        <li>
-                            <span className="listKey">{tree.rule.key}</span>
-                            <span className="listOp">{tree.rule.op}</span>
-                            <span className="listVal">{tree.rule.val}</span>
-                        </li>
-
+                    <>
+                        <span className="listKey">{tree.rule.key}</span>
+                        <span className="listOp">{tree.rule.op}</span>
+                        <span className="listVal">{tree.rule.val}</span>
                         <ul>
-                            <li>{renderTree(tree["0"])}</li>
-                            <li>{renderTree(tree["1"])}</li>
+                            <li>Yes: {renderTree(tree["1"])}</li>
+                            <li>No: {renderTree(tree["0"])}</li>
                         </ul>
-                    </ul>
+                    </>
                 );
             }
     }
@@ -40,7 +37,11 @@ export const renderTreeAsList = (treeToRender) => {
 
             <h2>{treeToRender.name}</h2>
 
-            {renderTree(treeToRender.data)}
+            <ul>
+                <li>
+                    {renderTree(treeToRender.data)}
+                </li>
+            </ul>
 
         </div>
     )
