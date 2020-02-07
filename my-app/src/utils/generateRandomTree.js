@@ -16,23 +16,17 @@ export const generateRandomTree = (formId, ) => {
 
     const randItem = (array) => array[Math.floor(Math.random() * array.length)];
 
-    let tree = {
-        formId: Date.now(),
-        name: randItem(adjectives) + " " + randItem(nouns) + " route",
-        data: makeTree("")
-    }
-
     const makeTree = (path) => {
 
-        let randomNumber = Math.floor(Math.random() * 10);
+        let randomNumber = Math.floor(Math.random() * 20);
 
-        // return an empty node
-        if (randomNumber < 2)
-            { return { path: path }; }
+          // return an empty node
+          if (randomNumber < 2 || path.length > 3)
+              { return { path: path }; }
 
-        // return a recipient
-        else if (randomNumber < 4)
-            { return { path: path, to: randItem(recipients) }; }
+          // return a recipient
+          else if (randomNumber < 4)
+              { return { path: path, to: randItem(recipients) }; }
 
         // return a rule and its children
         else
@@ -43,13 +37,15 @@ export const generateRandomTree = (formId, ) => {
                 let op = randItem(operatorsText);
                 let val = randItem(recipients);
 
-                if (Math.floor(Math.random() * 3) === 1)
+                let choice = Math.floor(Math.random() * 4);
+
+                if (choice === 1)
                     {
                         let key = randItem(nouns);
                         let op = randItem(operatorsText);
                         let val = randItem(adjectives);
                     }
-                else if (Math.floor(Math.random() * 3) === 2)
+                else if (choice === 2)
                     {
                         let key = randItem(counts);
                         let op = randItem(operatorsNumber);
@@ -63,9 +59,14 @@ export const generateRandomTree = (formId, ) => {
                     1: makeTree(path + "1")
                 };
             }
-
     }
 
+    
+    let tree = {
+        formId: Date.now(),
+        name: randItem(adjectives) + " " + randItem(nouns) + " route",
+        data: makeTree("")
+    }
 
     return tree;
 }

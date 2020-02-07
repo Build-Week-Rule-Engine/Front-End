@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;
+    border: 1px solid #999999;
+}
+
+.userDashboard {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.allForms, .allTrees {
+    width: 50%;
+    min-height: 50vh;
+}
+
+ul {
+    
+}
+
+li {
+    text-align: left;
+
+    margin: 0.25rem auto;
+}
+
+.listKey, .listOp, .listVal, .listTo {
+    display: inline-block;
+    margin: 0 0.25rem;
+    padding: 0.25rem;
+}
+
+.listKey {
+    background-color: #666666;
+}
+
+.listOp {
+    background-color: #999999;
+}
+
+.listVal {
+    background-color: #EEEEEE;
+}
+
+.listTo {
+    background-color: #333333;
+}

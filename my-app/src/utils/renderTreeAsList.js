@@ -1,16 +1,18 @@
 import React from "react";
 
-const renderTreeAsList = (tree) => {
+export const renderTreeAsList = (treeToRender) => {
 
     const renderTree = (tree) => {
 
+        console.log("current tree is", tree);
+
         // node only contains recipient
         if (tree.to)
-            { return <ul><li>{tree.to}</li></ul>; }
+            { return <span className="listTo">{tree.to}</span>; }
 
         // empty node
         else if (Object.keys(tree).length === 1)
-            { return <ul><li>{"TBD"}</li></ul>; }
+            { return <span className="listTBD">{"TBD"}</span>; }
         
         // rule with two children
         else
@@ -18,14 +20,14 @@ const renderTreeAsList = (tree) => {
                 return (
                     <ul>
                         <li>
-                            <span className="listLey">{tree.name}</span>
-                            <span className="listOp">{tree.op}</span>
-                            <span className="listVal">{tree.val}</span>
+                            <span className="listKey">{tree.rule.key}</span>
+                            <span className="listOp">{tree.rule.op}</span>
+                            <span className="listVal">{tree.rule.val}</span>
                         </li>
 
                         <ul>
-                            <li>{renderTreeAsList(tree["0"])}</li>
-                            <li>{renderTreeAsList(tree["1"])}</li>
+                            <li>{renderTree(tree["0"])}</li>
+                            <li>{renderTree(tree["1"])}</li>
                         </ul>
                     </ul>
                 );
@@ -36,12 +38,10 @@ const renderTreeAsList = (tree) => {
 
         <div className="treeAsList">
 
-            <h2>{tree.name}</h2>
+            <h2>{treeToRender.name}</h2>
 
-            {renderTreeAsList(tree)}
+            {renderTree(treeToRender.data)}
 
         </div>
     )
 }
-
-export default renderTreeAsList;
