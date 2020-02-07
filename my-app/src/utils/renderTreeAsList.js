@@ -4,8 +4,6 @@ export const renderTreeAsList = (treeToRender) => {
 
     const renderTree = (tree) => {
 
-        console.log("current tree is", tree);
-
         // node only contains recipient
         if (tree.to)
             { return <span className="listTo">send to {tree.to}</span>; }

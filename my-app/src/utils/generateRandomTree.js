@@ -4,7 +4,7 @@ export const generateRandomTree = (formId, ) => {
 
     let operatorsNumber = "is equal to|is less than|is greater than|is less than or equal to|is greater than or equal to|is at most|is under|is at least|is not equal to".split("|");
 
-    let operatorsText = "was|is|is not|includes|does not include".split("|");
+    let operatorsText = "was|is|is not|includes|does not include|will be|must not be".split("|");
 
     let recipients = "Michael Christopher Matthew Joshua Jacob Nicholas Andrew Daniel Tyler Joseph Brandon David James Ryan John Zachary Justin William Anthony Robert Jessica Ashley Emily Sarah Samantha Amanda Brittany Elizabeth Taylor Megan Hannah Kayla Lauren Stephanie Rachel Jennifer Nicole Alexis Victoria Amber".split(" ");
 

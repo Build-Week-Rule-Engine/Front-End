@@ -5,12 +5,15 @@
 
 .userDashboard {
     display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .allForms, .allTrees {
-    width: 50%;
+    width: 48%;
     min-height: 50vh;
 }
 
