@@ -19,9 +19,9 @@ const TreeEditor = ({form, tree, formsAvailable, treesAvailable, changeForm, upd
         <div className="treeEditorContainer">
             <div className="sidebar">
                 <FormChooser formsAvailable={formsAvailable} form={form} changeForm={changeForm} />
-                <FormRecipients form={form} updateLastSelectedOption={updateLastSelectedOption} />
-                <FormFields form={form} updateLastSelectedOption={updateLastSelectedOption}/>
-                <FormRules form={form} updateLastSelectedOption={updateLastSelectedOption}/>
+                <FormRecipients form={form} lastSelectedOption={lastSelectedOption} updateLastSelectedOption={updateLastSelectedOption} />
+                <FormFields form={form} lastSelectedOption={lastSelectedOption} updateLastSelectedOption={updateLastSelectedOption}/>
+                <FormRules form={form} lastSelectedOption={lastSelectedOption} updateLastSelectedOption={updateLastSelectedOption}/>
             </div>
             <div className="ruleLayout">
                 <OutlineView form={form} treeData={tree}

@@ -73,6 +73,17 @@
     background-color: #333333;
 }
 
+.optionSelectedLight {
+
+    margin: 0;
+    border: 0.25rem solid #CCCCCC;
+}
+
+.optionSelectedDark {
+
+    margin: 0;
+    border: 0.25rem solid #333333;
+}
 
 
 .formRules h3 {
