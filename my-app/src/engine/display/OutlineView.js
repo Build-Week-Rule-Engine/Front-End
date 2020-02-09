@@ -18,7 +18,7 @@ const OutlineView = ({form, treeData, lastSelectedOption, deleteTreeNodeAndChild
     }
 
     const makeEndNode = () => {
-        return <div className="dropArea">(drag a form field here, or drag a recipient here to finish.)</div>
+        return <div className="dropArea">(drop a form field here, or drop a recipient here to finish.)</div>
     }
 
     const createRoute = (tree) => {

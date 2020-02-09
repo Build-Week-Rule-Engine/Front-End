@@ -57,7 +57,8 @@
 
     color: #333333;
     background-color: #CCCCCC;
-    cursor: move;
+    /* cursor: move; */
+    cursor: pointer;
 }
 
 .formOperator {
@@ -106,9 +107,11 @@
     /* padding: 0.5rem 0; */
     /* margin: 0.25rem 0; */
     margin-top: 0.5rem;
+
+    cursor: pointer;
 }
 
-.ruleBox:hover {
+.ruleBox:hover, .dropArea:hover {
     background-color: #EEEEEE;
 }
 

@@ -6,6 +6,12 @@ const FormRecipients = ({lastSelectedOption, updateLastSelectedOption}) => {
 
     let optionType = "recipient";
 
+    const handleDrag = event => {
+        // event.preventDefault();
+
+        alert("Dragging hasn't been implemented yet. For now, click on the field you want to place, and click again in the destination box.")
+    }
+
     return (
         <div className="formRecipients">
             <h2>Recipients</h2>
