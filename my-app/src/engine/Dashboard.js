@@ -20,6 +20,8 @@ const Dashboard = ({ setCurrentTree, tree, formsAvailable, getAllForms, addForm,
 
     const [isEditingForm, setIsEditingForms] = useState(false);
     const [currentFormId, setCurrentFormId] = useState(undefined);
+
+    const [willRedirectToEditor, setWillRedirectToEditor] = useState(false);
     
     const [userValue, setUserValue] = useState("");
 
@@ -30,9 +32,12 @@ const Dashboard = ({ setCurrentTree, tree, formsAvailable, getAllForms, addForm,
 
     }, [])
 
+    if (willRedirectToEditor)
+        { return <Redirect to="/dashboard/editor" />; }
+
     const handleEditTree = () => {
         setCurrentTree(suggestedTree);
-        return <Redirect to="/dashboard/editor" />;
+        setWillRedirectToEditor(true);
     }
 
     const handleChange = event => {
