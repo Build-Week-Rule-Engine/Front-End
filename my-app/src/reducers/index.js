@@ -249,7 +249,13 @@ export const reducer = (state = initialState, action) => {
         let child = treeWalker[childBranch];
 
         // recreate child object, but leave out the "rule" property
-        let newChild = { path: child.path, 0: child["0"], 1: child["1"]}
+        let newChild = { path: child.path }
+
+        if (child["0"])
+        {
+            newChild["0"] = child["0"];
+            newChild["1"] = child["1"];
+        }
 
         console.log("newchild will be", newChild)
 
