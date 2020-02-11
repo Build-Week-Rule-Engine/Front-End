@@ -279,17 +279,41 @@ export const reducer = (state = initialState, action) => {
             {
                 let updatedNode = {path: ""};
 
+                console.log("editing root element with", itemToAdd)
+
                 // add recipient
                 if (itemToAdd.type === "recipient")
                     { updatedNode.to = itemToAdd.value; }
-
-                // if child elements exist, add them (only for adding rule, not for adding recipient)
-                if (0 && state.tree.data["0"])
+                else
                     {
-                        updatedNode["0"] = state.tree.data["0"];
-                        updatedNode["1"] = state.tree.data["1"];
+                        updatedNode.rule = {...state.tree.data.rule};
+
+                        console.log("item type is", itemToAdd.type)
+
+                        if (itemToAdd.type === "field")
+                            {
+                                updatedNode.rule.key = itemToAdd.value;
+                            }
+                        else if (itemToAdd.type === "number-rule" || itemToAdd.type === "text-rule")
+                            {
+                                updatedNode.rule.op = itemToAdd.value;
+                            }
+
+                        // if child elements exist, add them (only for adding rule, not for adding recipient)
+                        if (state.tree.data["0"])
+                            {
+                                updatedNode["0"] = state.tree.data["0"];
+                                updatedNode["1"] = state.tree.data["1"];
+                            }
+                        else
+                            {
+                                updatedNode["0"] = { path: "0" };
+                                updatedNode["1"] = { path: "1" };
+                            }
+
+                        console.log("The updated node contains", updatedNode);
                     }
-                
+
                 return {...state, tree: {...state.tree, data: updatedNode } };
             }
     
