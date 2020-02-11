@@ -30,7 +30,7 @@ export const initialTrees = [
                         0: { path: "100" }
                         }
                     },
-                0: { path: "10" }
+                0: { path: "0" }
             }
     },
 

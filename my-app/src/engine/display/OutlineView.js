@@ -17,8 +17,12 @@ const OutlineView = ({form, treeData, lastSelectedOption, deleteTreeNodeAndChild
         return node["0"]; // check if child nodes exist
     }
 
-    const makeEndNode = () => {
-        return <div className="dropArea">(drag a form field here, or drag a recipient here to finish.)</div>
+    const makeEndNode = (tree) => {
+
+        return (
+            <div className="dropArea" onClick={() => updateRuleAtNode(tree.path)}>
+                (drop a form field here, or drop a recipient here to finish.)
+            </div>);
     }
 
     const createRoute = (tree) => {
@@ -31,20 +35,19 @@ const OutlineView = ({form, treeData, lastSelectedOption, deleteTreeNodeAndChild
         else if (tree.to !== undefined)
             { return (
                 <div className="ruleBox">
-                    <div className="formRecipient">
+                    <div className="formRecipient" onClick={() => updateRuleAtNode(tree.path)}>
                         Send to {tree.to}
                     </div>
                     <DeleteButtons path={tree.path}
                         deleteTreeNodeAndChildren={deleteTreeNodeAndChildren}
                         clearRuleAtNode={clearRuleAtNode}
-                        updateRuleAtNode={updateRuleAtNode}
                     />
                 </div>
             ) }
 
-        // // empty object {} found as a node
+        // // node is empty (only has path property)
         else if (!hasChildren(tree))
-            { return makeEndNode(); }
+            { return makeEndNode(tree); }
 
         // node contains a rule and yes and no branches
         else
@@ -53,9 +56,9 @@ const OutlineView = ({form, treeData, lastSelectedOption, deleteTreeNodeAndChild
                     <div className="ruleAndChoices">
 
                         {
-                            isUnfinishedNode(tree) ? makeEndNode() :
+                            isUnfinishedNode(tree) ? makeEndNode(tree) :
                         
-                        <div className="ruleBox">
+                        <div className="ruleBox" onClick={() => updateRuleAtNode(tree.path)}>
                             <div className="formRule">{tree.rule.key}</div>
                             <div className="formOperator">{tree.rule.op}</div>
                             <div className="formValue">{tree.rule.val}</div>
