@@ -229,7 +229,7 @@ export const reducer = (state = initialState, action) => {
     {
         console.log("Reducer: clearing rule at", action.payload)
 
-        // root element; just clear it
+        // root element; add to tree
         if (action.payload === "")
             { return {...state, tree: {...state.tree, data: { path: "", 0: state.tree.data["0"], 1: state.tree.data["1"] }},  } }
         
@@ -261,7 +261,82 @@ export const reducer = (state = initialState, action) => {
 
     case UPDATE_RULE_AT_NODE:
 
-        console.log("Reducer: updating rule at", action.payload)
+        let itemToAdd = state.lastSelectedOption;
+
+        console.log("Reducer: updating rule at", action.payload, "with", itemToAdd)
+
+        if (itemToAdd.type === "" || itemToAdd.value === "")
+            { return state; }
+
+        // root element; add to tree
+        else if (action.payload === "")
+            {
+                let updatedNode = {path: ""};
+
+                // add recipient
+                if (itemToAdd.type === "recipient")
+                    { updatedNode.to = itemToAdd.value; }
+
+                // if child elements exist, add them (only for adding rule, not for adding recipient)
+                if (0 && state.tree.data["0"])
+                    {
+                        updatedNode["0"] = state.tree.data["0"];
+                        updatedNode["1"] = state.tree.data["1"];
+                    }
+                
+                return {...state, tree: {...state.tree, data: updatedNode } };
+            }
+    
+        else
+        {
+            let nodePath = action.payload.split("");
+
+            let nodePathUpToParent = nodePath.slice(0, nodePath.length - 1);
+            let childBranch = nodePath.slice(-1);
+    
+            let newTree = {...state.tree.data};
+            let treeWalker = newTree; // create a pointer to traverse newTree
+    
+            // follow path to node
+            for (let location of nodePathUpToParent)
+                { treeWalker = treeWalker[location]; }
+    
+            // store reference to current child object
+            let child = treeWalker[childBranch];
+    
+            // recreate child object, starting with the path
+            let newChild = { path: child.path };
+
+            console.log("newchild at the begining:", newChild)
+    
+            // add recipient
+            if (itemToAdd.type === "recipient")
+                { newChild.to = itemToAdd.value; }
+
+            console.log("newchild, after adding recipient:", newChild)
+
+            // if child elements exist, add them (only if updating rule, not for adding recipient)
+            if (0 && child["0"])
+                {
+                    newChild["0"] = child["0"];
+                    newChild["1"] = child["1"];
+                }
+
+            console.log("newchild will be", newChild)
+    
+            // reset parent node to point to newChild
+            treeWalker[childBranch] = newChild;
+    
+            return {...state, tree: {...state.tree, data: newTree }};
+
+        }
+
+        // else if (itemToAdd.type === "recipient")
+        //     {
+        //         console.log("adding recipient", itemToAdd.value);
+        //     }
+
+
 
         return {...state };
     

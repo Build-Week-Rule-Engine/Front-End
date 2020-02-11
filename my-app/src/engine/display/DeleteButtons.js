@@ -1,6 +1,6 @@
 import React from "react";
 
-const DeleteButtons = ({path, deleteTreeNodeAndChildren, clearRuleAtNode, updateRuleAtNode}) => {
+const DeleteButtons = ({path, deleteTreeNodeAndChildren, clearRuleAtNode}) => {
 
     return (
         <div className="deleteButtons">

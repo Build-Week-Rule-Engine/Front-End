@@ -19,10 +19,8 @@ const OutlineView = ({form, treeData, lastSelectedOption, deleteTreeNodeAndChild
 
     const makeEndNode = (tree) => {
 
-        console.log("tree is", tree);
-
         return (
-            <div className="dropArea" onClick={() => updateRuleAtNode(tree)}>
+            <div className="dropArea" onClick={() => updateRuleAtNode(tree.path)}>
                 (drop a form field here, or drop a recipient here to finish.)
             </div>);
     }
@@ -37,13 +35,12 @@ const OutlineView = ({form, treeData, lastSelectedOption, deleteTreeNodeAndChild
         else if (tree.to !== undefined)
             { return (
                 <div className="ruleBox">
-                    <div className="formRecipient" onClick={() => updateRuleAtNode(tree)}>
+                    <div className="formRecipient" onClick={() => updateRuleAtNode(tree.path)}>
                         Send to {tree.to}
                     </div>
                     <DeleteButtons path={tree.path}
                         deleteTreeNodeAndChildren={deleteTreeNodeAndChildren}
                         clearRuleAtNode={clearRuleAtNode}
-                        updateRuleAtNode={updateRuleAtNode}
                     />
                 </div>
             ) }
@@ -61,7 +58,7 @@ const OutlineView = ({form, treeData, lastSelectedOption, deleteTreeNodeAndChild
                         {
                             isUnfinishedNode(tree) ? makeEndNode(tree) :
                         
-                        <div className="ruleBox" onClick={() => updateRuleAtNode(tree)}>
+                        <div className="ruleBox" onClick={() => updateRuleAtNode(tree.path)}>
                             <div className="formRule">{tree.rule.key}</div>
                             <div className="formOperator">{tree.rule.op}</div>
                             <div className="formValue">{tree.rule.val}</div>
