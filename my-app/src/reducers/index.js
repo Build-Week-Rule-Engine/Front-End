@@ -342,6 +342,37 @@ export const reducer = (state = initialState, action) => {
             // add recipient
             if (itemToAdd.type === "recipient")
                 { newChild.to = itemToAdd.value; }
+            else
+                {
+                    newChild.rule = {...child.rule};
+
+                    console.log("item type is", itemToAdd.type)
+
+                    if (itemToAdd.type === "field")
+                        {
+                            newChild.rule.key = itemToAdd.value;
+                        }
+                    else if (itemToAdd.type === "number-rule" || itemToAdd.type === "text-rule")
+                        {
+                            newChild.rule.op = itemToAdd.value;
+                        }
+
+                    // if child elements exist, add them (only for adding rule, not for adding recipient)
+                    if (child["0"])
+                        {
+                            // newChild["0"] = { path: child.path + "0" };
+                            // newChild["1"] = { path: child.path + "1" };
+                            newChild["0"] = child["0"];
+                            newChild["1"] = child["1"];   
+                        }
+                    else
+                        {
+                            newChild["0"] = { path: child.path + "0" };
+                            newChild["1"] = { path: child.path + "1" };
+                        }
+
+                    console.log("The updated node contains", newChild);
+                }
 
             console.log("newchild, after adding recipient:", newChild)
 
